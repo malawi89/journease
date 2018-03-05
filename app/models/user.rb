@@ -9,4 +9,6 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
 
+  has_many :trips, through: :trip_users
+  has_many :trip_users, dependent: :destroy
 end
