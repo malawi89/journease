@@ -5,13 +5,15 @@ class TripsController < ApplicationController
     def new
       @trip = Trip.new
       @user = current_user
+      authorize @trip
     end
 
     def create
       @trip = Trip.new(trip_params)
+      authorize @trip
       @user = current_user
       if @trip.save
-        @trip_user = TripUser.create!(trip: @trip, user: @user)
+        TripUser.create!(trip: @trip, user: @user)
         redirect_to trip_path(@trip)
       else
         render :new
@@ -23,6 +25,7 @@ class TripsController < ApplicationController
 
     def update
       if @trip.update(trip_params)
+        authorize @trip
         redirect_to trip_path(@trip)
       else
         render :edit
@@ -38,6 +41,7 @@ class TripsController < ApplicationController
 
     def set_trip
       @trip = Trip.find(params[:id])
+      authorize @trip
     end
 
     def trip_params
