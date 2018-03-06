@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Edit your <%= @trip.name %> trip</h1>
+
+  <%= render 'form', trip: @trip %>
+
+  <div class="bottom-links">
+  <%= link_to 'Show', @trip %>
+  </div>
+  <div class="bottom-links">
+  <%= link_to 'Back to your trip', trip_path(@trip) %>
+  </div>
+</div>
