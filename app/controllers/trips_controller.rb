@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip, only: [:show,:update, :destroy]
   # after_create :associate_user
 
     def new
@@ -21,11 +21,12 @@ class TripsController < ApplicationController
     end
 
     def edit
+      @trip = Trip.find(params[:id])
+      authorize @trip
     end
 
     def update
       if @trip.update(trip_params)
-        authorize @trip
         redirect_to trip_path(@trip)
       else
         render :edit
