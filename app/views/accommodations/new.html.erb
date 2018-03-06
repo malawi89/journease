@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <h3>What accommodation would you add to your trip?</h3>
+
+      <% if @accommodation.errors.any? %>
+        <ul>
+          <% @accommodation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= render 'form', accommodation: @accommodation %>
+    </div>
+  </div>
+</div>
+
