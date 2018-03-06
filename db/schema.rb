@@ -10,10 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305180603) do
+ActiveRecord::Schema.define(version: 20180306113036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accommodations", force: :cascade do |t|
+    t.string "sub_category"
+    t.string "name"
+    t.string "location"
+    t.date "checkin"
+    t.date "checkout"
+    t.string "booking_references"
+    t.string "comments"
+    t.string "contact_details"
+    t.string "booking_documents"
+    t.bigint "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_accommodations_on_trip_id"
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.string "sub_category"
+    t.string "name"
+    t.string "location"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "booking_references"
+    t.string "comments"
+    t.string "contact_details"
+    t.string "booking_documents"
+    t.string "photo"
+    t.bigint "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_activities_on_trip_id"
+  end
+
+  create_table "journeys", force: :cascade do |t|
+    t.string "sub_category"
+    t.string "name"
+    t.string "travel_company"
+    t.string "travel_number"
+    t.string "seats"
+    t.string "departure_location"
+    t.datetime "departure_time"
+    t.string "arrival_location"
+    t.datetime "arrival_time"
+    t.string "booking_references"
+    t.string "comments"
+    t.string "contact_details"
+    t.string "booking_documents"
+    t.bigint "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_journeys_on_trip_id"
+  end
 
   create_table "trip_users", force: :cascade do |t|
     t.bigint "trip_id"
@@ -56,6 +109,9 @@ ActiveRecord::Schema.define(version: 20180305180603) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "accommodations", "trips"
+  add_foreign_key "activities", "trips"
+  add_foreign_key "journeys", "trips"
   add_foreign_key "trip_users", "trips"
   add_foreign_key "trip_users", "users"
 end
