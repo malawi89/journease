@@ -13,16 +13,16 @@ class TripPolicy < ApplicationPolicy
     true
   end
 
-  def edit
+  def edit?
     true
   end
 
   def update?
     # trip doesn't have user
-    #to get user check connected tripuser and find the user that created the trip
+    # to get user check connected tripuser and find the user that created the trip
     trip_user_id = TripUser.find_by(trip_id:record.id).user.id
     created_by = User.find(trip_user_id)
-    #check if the user the created the trip is the same as current_user and return true of false
+    # #check if the user the created the trip is the same as current_user and return true of false
     return created_by == user
   end
 
@@ -31,7 +31,8 @@ class TripPolicy < ApplicationPolicy
     record.user == user
   end
 
-  def show_trips?
-    record.first.user == user
+  def all?
+    true
   end
+
 end
