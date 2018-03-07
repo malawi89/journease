@@ -10,10 +10,10 @@
     <%= f.input :travel_company %>
     <%= f.input :travel_number %>
     <%= f.input :seats %>
-    <%= f.input :departure_location %>
+    <%= f.input :departure_location, input_html: {class: "autocompleter"} %>
     <%= f.input :departure_time, input_html: {class: "flatpicker"} %>
     <%= f.input :arrival_time, input_html: {class: "flatpicker"} %>
-    <%= f.input :arrival_location %>
+    <%= f.input :arrival_location, input_html: {class: "autocompleter"} %>
     <%= f.input :booking_references %>
     <%= f.input :comments %>
     <%= f.input :contact_details %>

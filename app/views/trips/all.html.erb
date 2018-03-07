@@ -2,7 +2,9 @@
 <h1>My trips:</h1>
 <ol>
   <% @trips.each do |trip| %>
-    <li><%= trip.name %> @ <%= trip.start_date %></li>
+    <%= link_to trip_path(trip) do  %>
+      <li><%= trip.name %> @ <%= trip.start_date %></li>
+    <% end %>
   <% end %>
 </ol>
 </div>
