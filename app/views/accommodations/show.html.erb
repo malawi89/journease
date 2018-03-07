@@ -1,5 +1,17 @@
-<h1><%= @accommodation.name %></h1>
-<%= link_to "Edit", edit_trip_accommodation_path(@trip, @accommodation) %>
-<%= link_to "Delete", trip_accommodation_path(@trip, @accommodation),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %>
+<div class="container">
+  <h1><%= @accommodation.name %></h1>
+
+  <p> <%= @accommodation.sub_category %> <p>
+  <p> <%= @accommodation.name == "" ? "" : "Name: " + @accommodation.name %> <p>
+  <p> <%= @accommodation.location == "" ? "" : "Location: " + @accommodation.location %> <p>
+  <p> <%= @accommodation.checkin == "" ? "" : "Check-in: " + @accommodation.checkin.to_s %> <p>
+  <p> <%= @accommodation.checkout == "" ? "" : "Check-out: " + @accommodation.checkout.to_s %> <p>
+  <p> <%= @accommodation.booking_references == "" ? "" : "Booking references: " + @accommodation.booking_references %> <p>
+  <p> <%= @accommodation.comments == "" ? "" : "Comments: " + @accommodation.comments %> <p>
+  <p> <%= @accommodation.contact_details == "" ? "" : "Contact details: " + @accommodation.contact_details%> <p>
+
+  <%= link_to "Edit", edit_trip_accommodation_path(@trip, @accommodation) %>
+  <%= link_to "Delete", trip_accommodation_path(@trip, @accommodation),
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>
+</div>
