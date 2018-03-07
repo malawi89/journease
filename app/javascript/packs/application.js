@@ -10,4 +10,6 @@
 console.log('Hello World from Webpacker');
 import 'bootstrap';
 import flatpickr from "flatpickr";
+import {autocomplete} from "../components/autocomplete";
+autocomplete();
 flatpickr(".flatpicker", {});
