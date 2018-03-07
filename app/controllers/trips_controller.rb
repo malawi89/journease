@@ -20,6 +20,50 @@ class TripsController < ApplicationController
       end
     end
 
+    def show
+      accommodations = Accommodation.where.not(latitude: nil, longitude: nil)
+      activities = Activity.where.not(latitude: nil, longitude: nil)
+      journeys = Journey.where.not(latitude: nil, longitude: nil)
+
+      @accommodations = []
+      @trip.accommodations.each do |accommodation|
+        @accommodations << accommodation if accommodations.include?(accommodation)
+      end
+      @activities = []
+      @trip.activities.each do |activity|
+        @activities << activity if activities.include?(activity)
+      end
+      @journeys = []
+      @trip.journeys.each do |journey|
+        @journeys << journey if journeys.include?(journey)
+      end
+      # YOu need a trip with an accomodation, journey and activity
+      # They all need to have locations
+      # then you can puts it here
+      # Then you need to look at generating markers
+      # A marker is just a JSON object of longitudes and latitudes
+      # Markers is an array of hashes. SO markers[0] will give you a hash. This has will have the lat and long of your accommodation
+      @markers = []
+      @accommodations.each do |accommodation|
+        @markers << {lat: accommodation.latitude, lng: accommodation.longitude}
+      end
+
+      @activities.each do |activity|
+        @markers << {lat: activity.latitude, lng: activity.longitude}
+      end
+
+      @journeys.each do |journey|
+        @markers << {lat: journey.latitude, lng: journey.longitude}
+      end
+
+      # @journeys.each do |journey|
+      #   @markers
+      # end
+      # @markers << { @accommodations.latitude, @accommodations.longitude }
+      puts "here"
+      puts @markers
+    end
+
     def all
       @trips = current_user.trips
       authorize @trips
