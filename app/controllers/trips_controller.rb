@@ -20,12 +20,18 @@ class TripsController < ApplicationController
       end
     end
 
+    def all
+      @trips = current_user.trips
+      authorize @trips
+    end
+
     def edit
       @trip = Trip.find(params[:id])
       authorize @trip
     end
 
     def update
+
       if @trip.update(trip_params)
         redirect_to trip_path(@trip)
       else

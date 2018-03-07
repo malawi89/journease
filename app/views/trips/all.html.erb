@@ -1,0 +1,8 @@
+<div class="container">
+<h1>My trips:</h1>
+<ol>
+  <% @trips.each do |trip| %>
+    <li><%= trip.name %> @ <%= trip.start_date %></li>
+  <% end %>
+</ol>
+</div>
