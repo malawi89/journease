@@ -1,16 +1,18 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip
 
   def new
-    @trip = Trip.find(params[:trip_id])
     @activity = Activity.new
+    authorize @activity
   end
 
   def create
     @activity = Activity.new(activity_params)
+    authorize @activity
     @activity.trip = @trip
     if @activity.save
-      redirect_to trip_activity(@activity)
+      redirect_to trip_activity_path(@trip, @activity)
     else
       render :new
     end
@@ -19,9 +21,12 @@ class ActivitiesController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
   def update
     if @activity.update(activity_params)
-      redirect_to trip_activity(@activity)
+      redirect_to trip_activity_path(@trip, @activity)
     else
       render :edit
     end
@@ -29,14 +34,20 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @activity.destroy
-    redirect_to trip_activity(@activity)
+    redirect_to trip_path(@trip)
   end
 
   private
 
   def set_activity
-    @activity = activity.find(params[:id])
+    @activity = Activity.find(params[:id])
+    authorize @activity
   end
+
+  def set_trip
+    @trip = Trip.find(params[:trip_id])
+  end
+
 
   def activity_params
     params.require(:activity).permit(:sub_category, :name, :location, :start_time,

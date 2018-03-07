@@ -1,0 +1,5 @@
+<h1><%= @activity.name %></h1>
+<%= link_to "Edit", edit_trip_activity_path(@trip, @activity) %>
+<%= link_to "Delete", trip_activity_path(@trip, @activity),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>

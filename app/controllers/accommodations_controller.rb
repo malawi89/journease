@@ -1,16 +1,18 @@
 class AccommodationsController < ApplicationController
   before_action :set_accommodation, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip
 
   def new
-    @trip = Trip.find(params[:trip_id])
     @accommodation = Accommodation.new
+    authorize @accommodation
   end
 
   def create
     @accommodation = Accommodation.new(accommodation_params)
+    authorize @accommodation
     @accommodation.trip = @trip
     if @accommodation.save
-      redirect_to trip_accommodation(@accommodation)
+      redirect_to trip_accommodation_path(@trip, @accommodation)
     else
       render :new
     end
@@ -19,9 +21,12 @@ class AccommodationsController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
   def update
     if @accommodation.update(accommodation_params)
-      redirect_to trip_accommodation(@accommodation)
+      redirect_to trip_accommodation_path(@trip, @accommodation)
     else
       render :edit
     end
@@ -29,13 +34,18 @@ class AccommodationsController < ApplicationController
 
   def destroy
     @accommodation.destroy
-    redirect_to trip_accommodation(@accommodation)
+    redirect_to trip_path(@trip)
   end
 
   private
 
   def set_accommodation
-    @accommodation = accommodation.find(params[:id])
+    @accommodation = Accommodation.find(params[:id])
+    authorize @accommodation
+  end
+
+  def set_trip
+    @trip = Trip.find(params[:trip_id])
   end
 
   def accommodation_params

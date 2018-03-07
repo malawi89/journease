@@ -1,8 +1,8 @@
 <div class="container">
-<h1>My trips:</h1>
-<ol>
-  <% @trips.each do |trip| %>
-    <li><%= trip.name %> @ <%= trip.start_date %></li>
-  <% end %>
-</ol>
+  <h1>My trips:</h1>
+  <ol>
+    <% @trips.each do |trip| %>
+      <li><%= link_to trip.name, trip_path(trip.id) %> @ <%= trip.start_date %> </li>
+    <% end %>
+  </ol>
 </div>
