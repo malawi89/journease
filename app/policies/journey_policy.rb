@@ -29,8 +29,11 @@ class JourneyPolicy < ApplicationPolicy
   end
 
   def destroy?
-    # to be modified like update
-    record.user == user
+    if TripUser.find_by(@trip).user.id.nil?
+      false
+    else
+      true
+    end
   end
 
 end
