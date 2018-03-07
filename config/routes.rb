@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :activities, except: [:index]
   end
   get 'my_trips', to: 'trips#all'
+  resources :users, only: [:show]
   # get 'my_trips', to: 'users#show_trips'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
