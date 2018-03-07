@@ -1,5 +1,17 @@
-<h1><%= @activity.name %></h1>
-<%= link_to "Edit", edit_trip_activity_path(@trip, @activity) %>
-<%= link_to "Delete", trip_activity_path(@trip, @activity),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %>
+<div class="container">
+  <h1><%= @activity.name %></h1>
+
+  <p> <%= @activity.sub_category %> <p>
+  <p> <%= @activity.name == "" ? "" : "Name: " + @activity.name %> <p>
+  <p> <%= @activity.location == "" ? "" : "Location: " + @activity.location %> <p>
+  <p> <%= @activity.start_time == "" ? "" : "Check-in: " + @activity.start_time.to_s %> <p>
+  <p> <%= @activity.end_time == "" ? "" : "Check-out: " + @activity.end_time.to_s %> <p>
+  <p> <%= @activity.booking_references == "" ? "" : "Booking references: " + @activity.booking_references %> <p>
+  <p> <%= @activity.comments == "" ? "" : "Comments: " + @activity.comments %> <p>
+  <p> <%= @activity.contact_details == "" ? "" : "Contact details: " + @activity.contact_details%> <p>
+
+  <%= link_to "Edit", edit_trip_activity_path(@trip, @activity) %>
+  <%= link_to "Delete", trip_activity_path(@trip, @activity),
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>
+</div>
