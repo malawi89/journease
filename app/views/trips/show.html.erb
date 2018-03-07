@@ -1,2 +1,9 @@
 <h1><%= @trip.name %></h1>
 <h2><%= @trip.start_date %> - <%= @trip.end_date %></h2>
+
+<div
+  id="map"
+  style="width: 100%;
+  height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+></div>
