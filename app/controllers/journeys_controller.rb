@@ -1,16 +1,18 @@
 class JourneysController < ApplicationController
   before_action :set_journey, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip
 
   def new
     @journey = Journey.new
-    @trip = Trip.find(params[:trip_id])
+    authorize @journey
   end
 
   def create
     @journey = Journey.new(journey_params)
+    authorize @journey
     @journey.trip = @trip
     if @journey.save
-      redirect_to trip_journey(@journey)
+      redirect_to trip_journey_path(@trip, @journey)
     else
       render :new
     end
@@ -19,9 +21,12 @@ class JourneysController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
   def update
     if @journey.update(journey_params)
-      redirect_to trip_journey(@journey)
+      redirect_to trip_journey_path(@trip, @journey)
     else
       render :edit
     end
@@ -29,13 +34,18 @@ class JourneysController < ApplicationController
 
   def destroy
     @journey.destroy
-    redirect_to trip_journey(@journey)
+    redirect_to trip_path(@trip)
   end
 
   private
 
   def set_journey
-    @journey = journey.find(params[:id])
+    @journey = Journey.find(params[:id])
+    authorize @journey
+  end
+
+  def set_trip
+    @trip = Trip.find(params[:trip_id])
   end
 
   def journey_params
