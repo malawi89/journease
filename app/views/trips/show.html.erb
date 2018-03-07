@@ -1,3 +1,7 @@
-<h1><%= @trip.name %></h1>
-<h2><%= @trip.start_date %> - <%= @trip.end_date %></h2>
-<%= link_to "Add a journey", new_trip_journey_path(@trip) %>
+<div class="container">
+  <h1><%= @trip.name %></h1>
+  <h2><%= @trip.start_date %> - <%= @trip.end_date %></h2>
+  <%= link_to "Add a journey", new_trip_journey_path(@trip) %>
+  <%= link_to "Add an accommodation", new_trip_accommodation_path(@trip) %>
+  <%= link_to "Add an activity", new_trip_activity_path(@trip) %>
+</div>
