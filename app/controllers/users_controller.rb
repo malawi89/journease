@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  # def show
-  #   @trips = current_user.trips
-  # end
+
+  def show
+    @user = User.find(params[:id])
+    authorize @user
+  end
+
 end

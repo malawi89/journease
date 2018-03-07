@@ -1,0 +1,5 @@
+<h1><%= @accommodation.name %></h1>
+<%= link_to "Edit", edit_trip_accommodation_path(@trip, @accommodation) %>
+<%= link_to "Delete", trip_accommodation_path(@trip, @accommodation),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
