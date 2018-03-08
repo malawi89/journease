@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :trips do
     resources :trip_users, only: [:new, :create, :destroy]
-    resources :journeys, except: [:index]
+    resources :journeys
     resources :accommodations, except: [:index]
     resources :activities, except: [:index]
   end
