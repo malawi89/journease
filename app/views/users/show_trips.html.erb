@@ -1,5 +1,7 @@
-<h1>Your trips</h1>
-<ul><% @trips.each do |trip| %>
-  <li><%= link_to trip.name, trip_path(@trip) %> <%= trip.start_date %> <%= trip.end_date %></li>
-  <% end %>
-</ul>
+<div class="minheight">
+  <h1>Your trips</h1>
+  <ul><% @trips.each do |trip| %>
+    <li><%= link_to trip.name, trip_path(@trip) %> <%= trip.start_date %> <%= trip.end_date %></li>
+    <% end %>
+  </ul>
+</div>
