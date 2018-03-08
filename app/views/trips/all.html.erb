@@ -1,10 +1,12 @@
-<div class="container">
-<h1>My trips:</h1>
-<ol>
-  <% @trips.each do |trip| %>
-    <%= link_to trip_path(trip) do  %>
-      <li><%= trip.name %> @ <%= trip.start_date %></li>
+<div class="minheight">
+  <div class="container">
+  <h1>My trips:</h1>
+  <ol>
+    <% @trips.each do |trip| %>
+      <%= link_to trip_path(trip) do  %>
+        <li><%= trip.name %> @ <%= trip.start_date %></li>
+      <% end %>
     <% end %>
-  <% end %>
-</ol>
+  </ol>
+  </div>
 </div>
