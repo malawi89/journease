@@ -49,7 +49,7 @@ class AccommodationsController < ApplicationController
   end
 
   def accommodation_params
-    params.require(:accommodation).permit(:sub_category, :name, :location, :checkin, :checkout,
+    params.require(:accommodation).permit(:sub_category, :name, :location, :start_time, :end_time,
       :booking_references, :comments, :contact_details, :booking_documents, :photo)
   end
 end
