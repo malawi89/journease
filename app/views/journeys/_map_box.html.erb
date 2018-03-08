@@ -1,0 +1,10 @@
+<!-- journey = Journey.find(id: :id) -->
+<h5> <%= journey.name %></h5>
+<ul style="list-style: none;">
+
+  <li><strong>Leaving at: </strong><%= journey.departure_time %></li>
+  <li><strong>Leaving from: </strong><%= journey.departure_location %></li>
+  <li><strong>Arriving at: </strong><%= journey.arrival_time %></li>
+  <li><strong>Arrival location: </strong><%= journey.arrival_location %></li>
+
+</ul>
