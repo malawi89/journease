@@ -22,6 +22,7 @@ class JourneysController < ApplicationController
   end
 
   def show
+    @journeys
   end
 
   def update
