@@ -7,7 +7,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :location %>
+    <%= f.input :location, input_html: {class: "autocompleter"} %>
     <%= f.input :checkin %>
     <%= f.input :checkout %>
     <%= f.input :booking_references %>
