@@ -1,9 +1,9 @@
 <div class="navbar-wagon">
+  <div class="fixed">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "LogoRed.png", height: 50 %>
+  <%= link_to root_path do %>
+    <%= image_tag "LogoRedBigLines2.png", height: "30", class: "logo-height2" %>
   <% end %>
-
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
@@ -44,6 +44,48 @@
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
+<% if user_signed_in? %>
+
+      <div class="navbar-wagon-item hidden-md hidden-lg">
+        <div class="dropdown">
+          <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to my_trips_path do %>
+              <i class="fas fa-suitcase"></i> <%= t(".trips", default: "Trips") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "#" do %>
+                <i class="fas fa-hand-peace"></i> <%= t(".friends", default: "Friends") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "#" do %>
+                <i class="fas fa-thumbtack"></i> <%= t(".locations", default: "Locations") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to user_path(current_user) do %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "#" do %>
+                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <% else %>
+
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
@@ -54,5 +96,6 @@
       </ul>
     </div>
   </div>
+<% end %>
 </div>
-
+</div>
