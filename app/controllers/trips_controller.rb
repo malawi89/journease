@@ -37,31 +37,35 @@ class TripsController < ApplicationController
       @trip.journeys.each do |journey|
         @journeys << journey if journeys.include?(journey)
       end
-      # YOu need a trip with an accomodation, journey and activity
-      # They all need to have locations
-      # then you can puts it here
-      # Then you need to look at generating markers
-      # A marker is just a JSON object of longitudes and latitudes
-      # Markers is an array of hashes. SO markers[0] will give you a hash. This has will have the lat and long of your accommodation
+
       @markers = []
       @accommodations.each do |accommodation|
-        @markers << {lat: accommodation.latitude, lng: accommodation.longitude}
+        @markers << {
+          lat: accommodation.latitude,
+          lng: accommodation.longitude,
+          icon: "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520532554/jfbccx4toxcer0qc4n63.png",
+          infoWindow: { content: render_to_string(partial: "/accommodations/map_box", locals: { accommodation: accommodation }) }
+        }
       end
 
       @activities.each do |activity|
-        @markers << {lat: activity.latitude, lng: activity.longitude}
+        @markers << {
+          lat: activity.latitude,
+          lng: activity.longitude,
+          icon: "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520532752/mhahcepdqrlpexnwu7ve.png",
+          infoWindow: { content: render_to_string(partial: "/activities/map_box", locals: { activity: activity }) }
+        }
       end
 
       @journeys.each do |journey|
-        @markers << {lat: journey.latitude, lng: journey.longitude}
+        @markers << {
+          lat: journey.latitude,
+          lng: journey.longitude,
+          icon: "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520532187/vhxymlwbyas92vn0xt3t.png",
+          infoWindow: { content: render_to_string(partial: "/journeys/map_box", locals: { journey: journey }) },
+          # id: journey.id
+        }
       end
-
-      # @journeys.each do |journey|
-      #   @markers
-      # end
-      # @markers << { @accommodations.latitude, @accommodations.longitude }
-      puts "here"
-      puts @markers
     end
 
     def all
