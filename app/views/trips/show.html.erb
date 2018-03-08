@@ -2,12 +2,14 @@
   <div class="container">
     <h1><%= @trip.name %></h1>
     <h2><%= @trip.start_date %> - <%= @trip.end_date %></h2>
-    <%= link_to "Add a journey", new_trip_journey_path(@trip) %>
-    <%= link_to "Add an accommodation", new_trip_accommodation_path(@trip) %>
-    <%= link_to "Add an activity", new_trip_activity_path(@trip) %>
+    <%= link_to "Add a journey", new_trip_journey_path(@trip), class:"btn btn-primary" %>
+    <%= link_to "Add an accommodation", new_trip_accommodation_path(@trip), class:"btn btn-primary" %>
+    <%= link_to "Add an activity", new_trip_activity_path(@trip), class:"btn btn-primary" %>
 
     <% milestones = [] %>
 
+<!-- stores all the journeys, accommodations and activities in an empty array
+ -->
     <% @trip.journeys.each do |journey| %>
       <% milestones << journey %>
     <% end %>
@@ -18,9 +20,10 @@
       <% milestones << activity %>
     <% end %>
 
+    <!-- stores all the journeys, accommodations and activities by start time -->
     <% milestones.sort_by! {|obj| obj.start_time}  %>
 
-
+    <!-- displays all the journeys, accommodations and activities as links sorted by start time -->
     <ol>
     <% milestones.each do |milestone| %>
       <% if milestone.class == Journey %>
@@ -38,9 +41,6 @@
       <% end %>
     <% end %>
     </ol>
-
-
-
 
     <div
       id="map"
