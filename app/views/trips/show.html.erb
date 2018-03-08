@@ -6,27 +6,41 @@
     <%= link_to "Add an accommodation", new_trip_accommodation_path(@trip) %>
     <%= link_to "Add an activity", new_trip_activity_path(@trip) %>
 
+    <% milestones = [] %>
+
+    <% @trip.journeys.each do |journey| %>
+      <% milestones << journey %>
+    <% end %>
+    <% @trip.accommodations.each do |accommodation| %>
+      <% milestones << accommodation %>
+    <% end %>
+    <% @trip.activities.each do |activity| %>
+      <% milestones << activity %>
+    <% end %>
+
+    <% milestones.sort_by! {|obj| obj.start_time}  %>
+
+
     <ol>
-      <% @trip.journeys.each do |journey| %>
-          <%= link_to trip_journey_path(@trip, journey.id) do %>
-        <li> <%= journey.start_time %> - <%= journey.name %> </li>
+    <% milestones.each do |milestone| %>
+      <% if milestone.class == Journey %>
+        <%= link_to trip_journey_path(@trip, milestone.id) do %>
+          <li> <%= milestone.start_time %> - <%= milestone.name %> </li>
+        <% end %>
+      <% elsif milestone.class == Accommodation %>
+        <%= link_to trip_accommodation_path(@trip, milestone.id) do %>
+          <li> <%= milestone.start_time %> - <%= milestone.name %> </li>
+        <% end %>
+      <% else  %>
+        <%= link_to trip_activity_path(@trip, milestone.id) do %>
+          <li> <%= milestone.start_time %> - <%= milestone.name %> </li>
         <% end %>
       <% end %>
+    <% end %>
     </ol>
-    <ol>
-      <% @trip.accommodations.each do |accommodation| %>
-        <%= link_to trip_accommodation_path(@trip, accommodation.id) do %>
-        <li> <%= accommodation.start_time %> - <%= accommodation.name %> </li>
-        <% end %>
-      <% end %>
-    </ol>
-    <ol>
-      <% @trip.activities.each do |activity| %>
-        <%= link_to trip_activity_path(@trip, activity.id) do %>
-        <li> <%= activity.start_time %> - <%= activity.name %> </li>
-        <% end %>
-      <% end %>
-    </ol>
+
+
+
 
     <div
       id="map"
