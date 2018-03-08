@@ -15,5 +15,6 @@
     <%= link_to "Delete", trip_activity_path(@trip, @activity),
           method: :delete,
           data: { confirm: "Are you sure?" } %>
+    <%= link_to "Return to trip", trip_path(@trip) %>
   </div>
 </div>

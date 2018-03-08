@@ -6,27 +6,27 @@
     <%= link_to "Add an accommodation", new_trip_accommodation_path(@trip) %>
     <%= link_to "Add an activity", new_trip_activity_path(@trip) %>
 
-    <h3>My journeys:</h3>
     <ol>
       <% @trip.journeys.each do |journey| %>
-        <li> <%= journey.name %> </li>
+          <%= link_to trip_journey_path(@trip, journey.id) do %>
+        <li> <%= journey.departure_time %> - <%= journey.name %> </li>
+        <% end %>
       <% end %>
     </ol>
-
-    <h3>My accommodations:</h3>
     <ol>
       <% @trip.accommodations.each do |accommodation| %>
-        <li> <%= accommodation.name %> </li>
+        <%= link_to trip_accommodation_path(@trip, accommodation.id) do %>
+        <li> <%= accommodation.checkin %> - <%= accommodation.name %> </li>
+        <% end %>
       <% end %>
     </ol>
-
-    <h3>My activities:</h3>
     <ol>
       <% @trip.activities.each do |activity| %>
-        <li> <%= activity.name %> </li>
+        <%= link_to trip_activity_path(@trip, activity.id) do %>
+        <li> <%= activity.start_time %> - <%= activity.name %> </li>
+        <% end %>
       <% end %>
     </ol>
-
 
     <div
       id="map"
