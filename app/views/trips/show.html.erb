@@ -5,15 +5,36 @@
     <%= link_to "Add a journey", new_trip_journey_path(@trip) %>
     <%= link_to "Add an accommodation", new_trip_accommodation_path(@trip) %>
     <%= link_to "Add an activity", new_trip_activity_path(@trip) %>
+
+    <h3>My journeys:</h3>
+    <ol>
+      <% @trip.journeys.each do |journey| %>
+        <li> <%= journey.name %> </li>
+      <% end %>
+    </ol>
+
+    <h3>My accommodations:</h3>
+    <ol>
+      <% @trip.accommodations.each do |accommodation| %>
+        <li> <%= accommodation.name %> </li>
+      <% end %>
+    </ol>
+
+    <h3>My activities:</h3>
+    <ol>
+      <% @trip.activities.each do |activity| %>
+        <li> <%= activity.name %> </li>
+      <% end %>
+    </ol>
+
+
+    <div
+      id="map"
+      style="width: 100%;
+      height: 600px;"
+      data-markers="<%= @markers.to_json %>"
+    ></div>
   </div>
-
-
-  <div
-    id="map"
-    style="width: 100%;
-    height: 600px;"
-    data-markers="<%= @markers.to_json %>"
-  ></div>
 </div>
 
 
