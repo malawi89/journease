@@ -9,14 +9,14 @@
     <ol>
       <% @trip.journeys.each do |journey| %>
           <%= link_to trip_journey_path(@trip, journey.id) do %>
-        <li> <%= journey.departure_time %> - <%= journey.name %> </li>
+        <li> <%= journey.start_time %> - <%= journey.name %> </li>
         <% end %>
       <% end %>
     </ol>
     <ol>
       <% @trip.accommodations.each do |accommodation| %>
         <%= link_to trip_accommodation_path(@trip, accommodation.id) do %>
-        <li> <%= accommodation.checkin %> - <%= accommodation.name %> </li>
+        <li> <%= accommodation.start_time %> - <%= accommodation.name %> </li>
         <% end %>
       <% end %>
     </ol>

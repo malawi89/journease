@@ -4,8 +4,8 @@ class CreateAccommodations < ActiveRecord::Migration[5.1]
       t.string :sub_category
       t.string :name
       t.string :location
-      t.date :checkin
-      t.date :checkout
+      t.datetime :start_time
+      t.datetime :end_time
       t.string :booking_references
       t.string :comments
       t.string :contact_details

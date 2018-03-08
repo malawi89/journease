@@ -7,9 +7,9 @@ class CreateJourneys < ActiveRecord::Migration[5.1]
       t.string :travel_number
       t.string :seats
       t.string :departure_location
-      t.datetime :departure_time
+      t.datetime :start_time
       t.string :arrival_location
-      t.datetime :arrival_time
+      t.datetime :end_time
       t.string :booking_references
       t.string :comments
       t.string :contact_details

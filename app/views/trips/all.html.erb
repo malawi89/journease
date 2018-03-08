@@ -1,5 +1,6 @@
 <div class="minheight">
   <div class="container">
+  <%= link_to "Create a new trip", new_trip_path, class:"btn btn-success" %>
   <h1>My trips:</h1>
   <ol>
     <% @trips.each do |trip| %>
