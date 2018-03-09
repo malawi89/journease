@@ -1,19 +1,36 @@
+
 <div class="minheight">
   <div class="container">
-  <%= link_to "Create a new trip", new_trip_path, class:"btn btn-success" %>
-  <h1>My trips:</h1>
 
-  <!-- stores all the trips by start date -->
+    <%= link_to "Create a new trip", new_trip_path, class:"btn btn-success" %>
+      <h1>My trips:</h1>
 
-
-  <ol>
-    <% @trips = @trips.sort_by {|obj| obj.start_date} %>
-    <% @trips.each do |trip| %>
-
-      <%= link_to trip_path(trip) do  %>
-        <li><%= cl_image_tag(trip.photo) %><%= trip.name %> @ <%= trip.start_date %></li>
-      <% end %>
-    <% end %>
-  </ol>
+      <div class="container">
+        <% @trips = @trips.sort_by {|obj| obj.start_date} %>
+        <% @trips.each do |trip| %>
+        <div class="message">
+          <div class="message-name">
+            <h1 class="days">12</h1>
+            <p class="days">days</p>
+          </div>
+           <%= link_to trip_path(trip) do %>
+            <%= cl_image_tag trip.photo, height: 100, width: 200, crop: :fill %>
+            <% end  %>
+          <div class="message-body">
+            <h3 class="days"><%= trip.name  %></h3>
+            <p class="days">from <%= trip.start_date %> to <%= trip.end_date %></p>
+          </div>
+          <div>
+            <%= image_tag "collaborators.png", height: 100 %>
+          </div>
+          <div class="message-status">
+            <p class="status pending">Pending</p>
+            <p class="price">Milles: <%= rand(500..1500) %></p>
+          </div>
+        </div>
+        <% end %>
+      </div>
   </div>
 </div>
+
+
