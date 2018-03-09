@@ -1,10 +1,31 @@
 <div class="minheight">
   <div class="container">
-    <h1><%= @trip.name %></h1>
-    <h2><%= @trip.start_date %> - <%= @trip.end_date %></h2>
-    <%= link_to "Add a journey", new_trip_journey_path(@trip), class:"btn btn-primary" %>
-    <%= link_to "Add an accommodation", new_trip_accommodation_path(@trip), class:"btn btn-primary" %>
-    <%= link_to "Add an activity", new_trip_activity_path(@trip), class:"btn btn-primary" %>
+    <div class="banner banner-small" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.5) 0%, rgba(0,0,0,0.5) 50%), url(<%= @trip.photo %>)";>
+
+      <div class="banner-content">
+        <h1> <%= @trip.name %> </h1>
+        <h2> from <%= @trip.start_date.strftime("%m/%d/%Y") %> </h2>
+        <h2> to <%= @trip.end_date.strftime("%m/%d/%Y") %> </h2>
+
+      </div>
+    </div>
+    <div class="row">
+      <h1></h1>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-4" style="text-align:center">
+        <%= link_to "Add a journey", new_trip_journey_path(@trip), class:"btn btn-primary btn-fixed" %>
+      </div>
+      <div class="col-xs-12 col-md-4" style="text-align:center">
+        <%= link_to "Add an accommodation", new_trip_accommodation_path(@trip), class:"btn btn-primary btn-fixed" %>
+      </div>
+      <div class="col-xs-12 col-md-4" style="text-align:center">
+        <%= link_to "Add an activity", new_trip_activity_path(@trip), class:"btn btn-primary btn-fixed" %>
+      </div>
+    </div>
+    <div class="row">
+      <h1></h1>
+    </div>
 
     <% milestones = [] %>
 
@@ -28,15 +49,15 @@
     <% milestones.each do |milestone| %>
       <% if milestone.class == Journey %>
         <%= link_to trip_journey_path(@trip, milestone.id) do %>
-          <li> <%= milestone.start_time %> - <%= milestone.name %> </li>
+          <li> <%= milestone.start_time.strftime("%e %b") %> - <%= milestone.name %> </li>
         <% end %>
       <% elsif milestone.class == Accommodation %>
         <%= link_to trip_accommodation_path(@trip, milestone.id) do %>
-          <li> <%= milestone.start_time %> - <%= milestone.name %> </li>
+          <li> <%= milestone.start_time.strftime("%e %b") %> - <%= milestone.name %> </li>
         <% end %>
       <% else  %>
         <%= link_to trip_activity_path(@trip, milestone.id) do %>
-          <li> <%= milestone.start_time %> - <%= milestone.name %> </li>
+          <li> <%= milestone.start_time.strftime("%e %b") %> - <%= milestone.name %> </li>
         <% end %>
       <% end %>
     <% end %>
