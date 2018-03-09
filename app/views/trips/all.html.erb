@@ -2,7 +2,12 @@
   <div class="container">
   <%= link_to "Create a new trip", new_trip_path, class:"btn btn-success" %>
   <h1>My trips:</h1>
+
+  <!-- stores all the trips by start date -->
+
+
   <ol>
+    <% @trips = @trips.sort_by {|obj| obj.start_date} %>
     <% @trips.each do |trip| %>
       <%= link_to trip_path(trip) do  %>
         <li><%= trip.name %> @ <%= trip.start_date %></li>
