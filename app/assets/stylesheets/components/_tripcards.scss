@@ -65,10 +65,20 @@
   transform-origin: left top 0;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .days {
   margin: 1px;
   padding: 1px;
   text-align: center;
+  color: #929292;
+  text-decoration: none;
+}
+
+.days:hover {
+  text-decoration: none;
 }
 
 .nodecoration {
