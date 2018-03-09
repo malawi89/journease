@@ -1,5 +1,6 @@
 
 <div class="minheight">
+
   <div class="container">
     <div class="row">
       <div class="col-sm-11">
@@ -24,15 +25,18 @@
           <%= cl_image_tag trip.photo, height: 100, width: 200, crop: :fill %>
           <% end  %>
         <div class="message-body">
+          <%= link_to trip_path(trip) do %>
           <h3 class="days"><%= trip.name  %></h3>
           <p class="days">from <%= trip.start_date %> to <%= trip.end_date %></p>
+          <% end %>
         </div>
         <div>
           <%= image_tag "collaborators.png", height: 100 %>
         </div>
         <div class="message-status">
           <p class="status pending">Pending</p>
-          <p class="price">Milles: <%= rand(500..1500) %></p>
+
+          <p class="price">Miles: <%= rand(500..1500) %></p>
         </div>
       </div>
       <% end %>
@@ -60,7 +64,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
