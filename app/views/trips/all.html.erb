@@ -1,10 +1,12 @@
 
 <div class="minheight">
   <div class="container">
+
     <%= link_to "Create a new trip", new_trip_path, class:"btn btn-success" %>
       <h1>My trips:</h1>
 
       <div class="container">
+        <% @trips = @trips.sort_by {|obj| obj.start_date} %>
         <% @trips.each do |trip| %>
         <div class="message">
           <div class="message-name">
@@ -28,7 +30,6 @@
         </div>
         <% end %>
       </div>
-
   </div>
 </div>
 

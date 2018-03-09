@@ -70,6 +70,7 @@ class TripsController < ApplicationController
 
     def all
       @trips = current_user.trips
+
       authorize @trips
     end
 
