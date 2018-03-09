@@ -6,6 +6,6 @@
   <li><strong>Leaving from: </strong><%= journey.departure_location %></li>
   <li><strong>Arriving at: </strong><%= journey.end_time %></li>
   <li><strong>Arrival location: </strong><%= journey.arrival_location %></li>
-  <li><%= link_to "Get directions to departure location", "https://www.google.com/maps/dir/?api=1&destination=#{journey.departure_location}" %></li>
-  <li><%= link_to "Get directions to arrival location", "https://www.google.com/maps/dir/?api=1&destination=#{journey.arrival_location}" %></li>
+  <li><%= link_to "Get directions to departure location", "https://www.google.com/maps/dir/?api=1&destination=#{journey.departure_location}", target: '_blank' %></li>
+  <li><%= link_to "Get directions to arrival location", "https://www.google.com/maps/dir/?api=1&destination=#{journey.arrival_location}", target: '_blank' %></li>
 </ul>

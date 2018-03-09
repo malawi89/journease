@@ -82,8 +82,15 @@
                     <p>Address: <%= milestone.location %></p>
                   <% end %>
               </div>
-              <%= image_tag "map.png", alt: "Get Directions", class: "card-map"%>
-
+              <% if milestone.class == Journey %>
+              <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.departure_location}", target: '_blank' do %>
+                       <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
+                       <% end  %>
+                       <% else %>
+                       <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' do %>
+                       <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
+                       <% end  %>
+                       <% end  %>
             </div>
 
 
