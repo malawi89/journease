@@ -9,8 +9,9 @@
   <ol>
     <% @trips = @trips.sort_by {|obj| obj.start_date} %>
     <% @trips.each do |trip| %>
+
       <%= link_to trip_path(trip) do  %>
-        <li><%= trip.name %> @ <%= trip.start_date %></li>
+        <li><%= cl_image_tag(trip.photo) %><%= trip.name %> @ <%= trip.start_date %></li>
       <% end %>
     <% end %>
   </ol>
