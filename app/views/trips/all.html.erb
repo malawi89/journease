@@ -1,50 +1,35 @@
+
 <div class="minheight">
   <div class="container">
-  <%= link_to "Create a new trip", new_trip_path, class:"btn btn-success" %>
-  <h1>My trips:</h1>
-  <ol>
-    <% @trips.each do |trip| %>
-      <%= link_to trip_path(trip) do  %>
-      <%= cl_image_tag trip.photo, height: 300, width: 400, crop: :fill %>
-        <li><%= trip.name %> @ <%= trip.start_date %></li>
-      <% end %>
-      <%= trip.photo %>
-      <%= link_to edit_trip_path(trip) do %>
-        <li>Edit</li>
+    <%= link_to "Create a new trip", new_trip_path, class:"btn btn-success" %>
+      <h1>My trips:</h1>
+
+      <div class="container">
+        <% @trips.each do |trip| %>
+        <div class="message">
+          <div class="message-name">
+            <h1 class="days">12</h1>
+            <p class="days">days</p>
+          </div>
+           <%= link_to trip_path(trip) do %>
+            <%= cl_image_tag trip.photo, height: 100, width: 200, crop: :fill %>
+            <% end  %>
+          <div class="message-body">
+            <h3 class="days"><%= trip.name  %></h3>
+            <p class="days">from <%= trip.start_date %> to <%= trip.end_date %></p>
+          </div>
+          <div>
+            <%= image_tag "collaborators.png", height: 100 %>
+          </div>
+          <div class="message-status">
+            <p class="status pending">Pending</p>
+            <p class="price">Milles: <%= rand(500..1500) %></p>
+          </div>
+        </div>
         <% end %>
-    <% end %>
-  </ol>
+      </div>
+
   </div>
 </div>
-
-
-  <div class="container">
-    <% @trips.each do |trip| %>
-    <div class="message">
-      <div class="message-name">
-        <h1 class="days">12</h1>
-        <p class="days">days</p>
-      </div>
-        <%= cl_image_tag trip.photo, height: 80, width: 200, crop: :fill %>
-      <div class="message-name">
-        <h1 class="days">Gab Dehan</h1>
-        <p class="days">10/07/17</p>
-      </div>
-      <div class="message-body">
-        <p><strong>I am not sure yet!</strong></p>
-        <p>
-          I am not sure yet! I might be in Shanghai at this moment... Can I tell you later?
-        </p>
-      </div>
-      <div class="message-status">
-        <p class="status pending">Pending</p>
-        <p class="price">€345</p>
-      </div>
-       <%= link_to "", trip_path(trip), class: "card-link" %>
-    </div>
-
-  <% end %>
-  </div>
-
 
 

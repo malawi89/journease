@@ -1,14 +1,14 @@
 .message {
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 30px;
   border-bottom: 1px solid rgba(100,100,100,0.6);
 }
 .message:last-child {
   border-bottom: none;
 }
 .message-body {
-  flex-grow: 1;
+  flex-grow: 2;
 }
 .message-name {
   padding-left: 10px;
