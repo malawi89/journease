@@ -3,14 +3,14 @@
   <div class="container">
 
     <%= link_to "Create a new trip", new_trip_path, class:"btn btn-success" %>
-      <h1>My trips:</h1>
+      <h3>Upcoming trips:</h3>
 
       <div class="container">
         <% @trips = @trips.sort_by {|obj| obj.start_date} %>
         <% @trips.each do |trip| %>
         <div class="message">
           <div class="message-name">
-            <h1 class="days">12</h1>
+            <h1 class="days"><%= (trip.end_date - trip.start_date).to_i %></h1>
             <p class="days">days</p>
           </div>
            <%= link_to trip_path(trip) do %>
