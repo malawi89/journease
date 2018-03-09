@@ -46,21 +46,52 @@
 
     <!-- displays all the journeys, accommodations and activities as links sorted by start time -->
     <ol>
-    <% milestones.each do |milestone| %>
-      <% if milestone.class == Journey %>
-        <%= link_to trip_journey_path(@trip, milestone.id) do %>
-          <li> <%= milestone.start_time.strftime("%e %b") %> - <%= milestone.name %> </li>
-        <% end %>
-      <% elsif milestone.class == Accommodation %>
-        <%= link_to trip_accommodation_path(@trip, milestone.id) do %>
-          <li> <%= milestone.start_time.strftime("%e %b") %> - <%= milestone.name %> </li>
-        <% end %>
-      <% else  %>
-        <%= link_to trip_activity_path(@trip, milestone.id) do %>
-          <li> <%= milestone.start_time.strftime("%e %b") %> - <%= milestone.name %> </li>
-        <% end %>
+
+    <div class="row">
+      <% milestones.each do |milestone| %>
+        <div class="col-xs-offset-4 col-xs-4">
+
+          <div class="card">
+
+                <% if milestone.class == Journey %>
+                  <%= link_to "",trip_journey_path(milestone), class: "card-link"%>
+                <% elsif milestone.class == Accommodation %>
+                  <%= link_to "",trip_accommodation_path(milestone), class: "card-link"%>
+                <% else %>
+                  <%= link_to "",trip_activity_path(milestone), class: "card-link"%>
+                <% end %>
+
+            <div class="card-image">
+              <% if milestone.class == Activity %>
+                <%= image_tag milestone.photo %>
+              <% else %>
+                <%= image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520610823/cartoontrain2.png" %>
+              <% end %>
+            </div>
+
+            <div class="card-description">
+
+              <div class="card-info">
+                <h2><%= milestone.name %></h2>
+                <p><%= milestone.start_time %></p>
+                <p><%= milestone.end_time %></p>
+                <% if milestone.class == Journey %>
+                    <p>Departure Address: <%= milestone.departure_location %></p>
+                    <p>Arrival Address: <%= milestone.arrival_location %></p>
+                  <% else %>
+                    <p>Address: <%= milestone.location %></p>
+                  <% end %>
+              </div>
+              <%= image_tag "map.png", alt: "Get Directions", class: "card-map"%>
+
+            </div>
+
+
+          </div>
+        </div>
+
       <% end %>
-    <% end %>
+    </div>
     </ol>
 
     <div
