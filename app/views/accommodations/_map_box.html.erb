@@ -5,6 +5,6 @@
   <li><strong>Staying from: </strong><%= accommodation.start_time %></li>
   <li><strong>Staying until: </strong><%= accommodation.end_time %></li>
   <li><strong>Address: </strong><%= accommodation.location %></li>
-  <li><%= link_to "Get directions", "https://www.google.com/maps/dir/?api=1&destination=#{accommodation.location}" %></li>
+  <li><%= link_to "Get directions", "https://www.google.com/maps/dir/?api=1&destination=#{accommodation.location}", target: '_blank' %></li>
 
 </ul>
