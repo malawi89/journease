@@ -19,9 +19,11 @@ class JourneysController < ApplicationController
   end
 
   def edit
+    authorize @journey
   end
 
   def show
+    authorize @journey
   end
 
   def update
@@ -34,6 +36,7 @@ class JourneysController < ApplicationController
 
   def destroy
     @journey.destroy
+    authorize @journey
     redirect_to trip_path(@trip)
   end
 

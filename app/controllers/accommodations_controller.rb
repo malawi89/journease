@@ -19,13 +19,16 @@ class AccommodationsController < ApplicationController
   end
 
   def edit
+    authorize @accommodation
   end
 
   def show
+    authorize @accommodation
   end
 
   def update
     if @accommodation.update(accommodation_params)
+      authorize @accommodation
       redirect_to trip_accommodation_path(@trip, @accommodation)
     else
       render :edit
@@ -34,6 +37,7 @@ class AccommodationsController < ApplicationController
 
   def destroy
     @accommodation.destroy
+    authorize @accommodation
     redirect_to trip_path(@trip)
   end
 
