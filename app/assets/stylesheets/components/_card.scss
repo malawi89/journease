@@ -1,64 +1,100 @@
 .card {
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-top: 3px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  color: white;
-  margin-bottom: 10px;
-  width: 400px;
-  position: relative;
-
-}
-
-.card-image{
-  position: relative;
-  height: 175px;
-  background-size: cover !important;
-  background-position: center;
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2));
-  img{
-    width: 100%;
-  }
-}
-
-.card-description {
-  background-color: white;
-  min-height: 120px;
   color: black;
+  margin-bottom: 10px;
   display: flex;
+  border: 1px solid #E6E6E6;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 10px;
+  height: 80px;
+  background-color: white;
+
+
+  a{
+    font-size: 12px;
+    color: black;
+
+  }
+
+
 }
 
-.card-info{
-  width: 70%;
-
-}
-.card-map {
-  width: 50px;
-  text-transform: uppercase;
-}
-.card-description h2 {
-  font-size: 16px;
-  margin-top: 15px !important;
-}
-.card-description p {
-  font-size: 12px;
-  opacity: 0.9;
-  font-weight: regular;
-}
-.card-link {
+.card-links{
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
-  cursor: pointer;
-  width: 400px;
-  z-index: 2;
+  left: 0;
   background: transparent;
-  opacity: 0;
-  height: 175px;
+  z-index: 2;
+  // height: 100%;
+  cursor: pointer;
+  width: 100%;
+}
+
+.card-show{
+  align-items: center;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  border-right: 1px solid #E6E6E6;
+  height: 80px;
+  padding-right: 30px;
+  // flex: 1 0 auto;
+}
+
+.card-logo{
+  width: 50px;
+  padding-left: 10px;
+  // margin: 0 30px;
+
+}
+
+.card-info{
+  flex: 1 0 auto;
+  margin: 15px;
+  line-height: 0.6;
+
+  h4{
+    font-size: 16px;
+  }
+
+  p{
+    font-size: 12px;
+  }
+
+}
+.card-map {
+  width: 32px;
+  text-transform: uppercase;
+  margin-right: 9px;
+}
+
+.map {
+
+  cursor: pointer;
+  justify-content: center;
+  margin: 0 20px;
+
+
 }
 .card-link:hover {
   opacity: 0.1;
 }
+// .card-description {
+//   background-color: white;
+//   min-height: 120px;
+//   color: black;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding: 5px 10px;
+// }
+// .card-description h2 {
+//   font-size: 16px;
+//   margin-top: 15px !important;
+// }
+// .card-description p {
+//   font-size: 12px;
+//   opacity: 0.9;
+//   font-weight: regular;
