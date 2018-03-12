@@ -2,21 +2,16 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :sub_category, collection: ['plane', 'train', 'car rental', 'ferry', 'bus', 'other (bicycle, unicorn, etc.)'] %>
+    <%= f.input :sub_category, prompt: "Select a transportation mean",collection: ['Plane', 'Train', 'Car rental', 'Ferry', 'Bus', 'Other (bicycle, unicorn, etc.)'] %>
   </div>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :travel_company %>
-    <%= f.input :travel_number %>
-    <%= f.input :seats %>
+    <%= f.input :name, placeholder: 'Plane to NYC, Seats 12B, Train to London, etc.' %>
     <%= f.input :departure_location, input_html: {class: "autocompleter"} %>
-    <%= f.input :start_time, input_html: {class: "flatpicker"} %>
-    <%= f.input :end_time, input_html: {class: "flatpicker"} %>
+    <%= f.input :start_time, as: :string, input_html: {class: "flatpicker"} %>
+    <%= f.input :end_time, as: :string, input_html: {class: "flatpicker"} %>
     <%= f.input :arrival_location, input_html: {class: "autocompleter"} %>
-    <%= f.input :booking_references %>
     <%= f.input :comments %>
-    <%= f.input :contact_details %>
     <%= f.input :booking_documents %>
   </div>
 

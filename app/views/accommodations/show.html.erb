@@ -7,9 +7,8 @@
     <p> <%= @accommodation.location == "" ? "" : "Location: " + @accommodation.location %> <p>
     <p> <%= @accommodation.start_time == "" ? "" : "Check-in: " + @accommodation.start_time.strftime("%b %e, %l:%M %p") %> <p>
     <p> <%= @accommodation.end_time == "" ? "" : "Check-out: " + @accommodation.end_time.strftime("%b %e, %l:%M %p") %> <p>
-    <p> <%= @accommodation.booking_references == "" ? "" : "Booking references: " + @accommodation.booking_references %> <p>
     <p> <%= @accommodation.comments == "" ? "" : "Comments: " + @accommodation.comments %> <p>
-    <p> <%= @accommodation.contact_details == "" ? "" : "Contact details: " + @accommodation.contact_details%> <p>
+
 
     <%= link_to "Edit", edit_trip_accommodation_path(@trip, @accommodation) %>
     <%= link_to "Delete", trip_accommodation_path(@trip, @accommodation),
