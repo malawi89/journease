@@ -13,6 +13,8 @@
       <p> <%= @journey.booking_references == "" ? "" : "Booking references: " + @journey.booking_references %> <p>
       <p> <%= @journey.comments == "" ? "" : "Comments: " + @journey.comments %> <p>
       <p> <%= @journey.contact_details == "" ? "" : "Contact details: " + @journey.contact_details%> <p>
+      <%= link_to 'Download Documents', @journey.photo.url, class: "btn btn-default btn-lg" %>
+
 
     <%= link_to "Edit", edit_trip_journey_path(@trip, @journey) %>
     <%= link_to "Delete", trip_journey_path(@trip, @journey),

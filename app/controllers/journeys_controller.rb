@@ -52,6 +52,6 @@ class JourneysController < ApplicationController
   def journey_params
     params.require(:journey).permit(:sub_category, :name, :travel_company, :travel_number, :seats,
       :departure_location, :start_time, :end_time, :arrival_location, :booking_references,
-      :comments,:contact_details, :booking_documents)
+      :comments,:contact_details, :booking_documents, :photos)
   end
 end
