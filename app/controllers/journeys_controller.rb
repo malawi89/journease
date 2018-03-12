@@ -41,7 +41,6 @@ class JourneysController < ApplicationController
 
   def set_journey
     @journey = Journey.find(params[:id])
-    authorize @journey
   end
 
   def set_trip

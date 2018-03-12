@@ -41,7 +41,6 @@ class ActivitiesController < ApplicationController
 
   def set_activity
     @activity = Activity.find(params[:id])
-    authorize @activity
   end
 
   def set_trip

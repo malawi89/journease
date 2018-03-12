@@ -9,6 +9,7 @@
     <p> <%= @accommodation.end_time == "" ? "" : "Check-out: " + @accommodation.end_time.strftime("%b %e, %l:%M %p") %> <p>
     <p> <%= @accommodation.comments == "" ? "" : "Comments: " + @accommodation.comments %> <p>
 
+
     <%= link_to 'Download Documents', @accommodation.booking_documents.url, class: "btn btn-default btn-lg" %>
 
     <%= link_to "Edit", edit_trip_accommodation_path(@trip, @accommodation) %>

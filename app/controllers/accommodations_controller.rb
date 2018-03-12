@@ -41,7 +41,6 @@ class AccommodationsController < ApplicationController
 
   def set_accommodation
     @accommodation = Accommodation.find(params[:id])
-    authorize @accommodation
   end
 
   def set_trip
