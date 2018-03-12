@@ -66,6 +66,7 @@ class TripsController < ApplicationController
           # id: journey.id
         }
       end
+      authorize @trip
     end
 
     def all
