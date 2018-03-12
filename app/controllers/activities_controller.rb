@@ -19,9 +19,11 @@ class ActivitiesController < ApplicationController
   end
 
   def edit
+    authorize @activity
   end
 
   def show
+    authorize @activity
   end
 
   def update
