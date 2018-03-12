@@ -11,7 +11,9 @@
     <%= f.input :start_time, as: :string, input_html: {class: "flatpicker"} %>
     <%= f.input :end_time, as: :string, input_html: {class: "flatpicker"} %>
     <%= f.input :comments %>
-    <%= f.input :photo, label: "Booking document" %>
+    <%= f.input :booking_documents, label: "Booking document" %>
+    <%= f.input :booking_documents_cache, as: :hidden %>
+    <%= f.input :photo, label: "Add a Photo" %>
     <%= f.input :photo_cache, as: :hidden %>
   </div>
 
