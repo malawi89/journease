@@ -28,6 +28,7 @@ class ActivitiesController < ApplicationController
 
   def update
     if @activity.update(activity_params)
+      authorize @activity
       redirect_to trip_activity_path(@trip, @activity)
     else
       render :edit
@@ -36,6 +37,7 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @activity.destroy
+    authorize @activity
     redirect_to trip_path(@trip)
   end
 
