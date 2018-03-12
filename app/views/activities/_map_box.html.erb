@@ -2,8 +2,8 @@
 <ul style="list-style: none;">
 
   <li><strong>Activity Type: </strong><%= activity.sub_category %></li>
-  <li><strong>Start time: </strong><%= activity.start_time %></li>
-  <li><strong>End time: </strong><%= activity.end_time %></li>
+  <li><strong>Start time: </strong><%= activity.start_time.strftime("%b %e, %l:%M %p") %></li>
+  <li><strong>End time: </strong><%= activity.end_time.strftime("%b %e, %l:%M %p") %></li>
   <li><strong>Address: </strong><%= activity.location %></li>
   <li><%= link_to "Get directions", "https://www.google.com/maps/dir/?api=1&destination=#{activity.location}", target: '_blank' %></li>
 
