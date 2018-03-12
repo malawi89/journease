@@ -8,7 +8,7 @@
       <p> <%= @journey.arrival_location == "" ? "" : "Arrival location: " + @journey.arrival_location %> <p>
       <p> <%= @journey.end_time == "" ? "" : "Arrival time: " + @journey.end_time.strftime("%b %e, %l:%M %p") %> <p>
       <p> <%= @journey.comments == "" ? "" : "Comments: " + @journey.comments %> <p>
-      <%= link_to 'Download Documents', @journey.photo.url, class: "btn btn-default btn-lg" %>
+      <%= link_to 'Download Documents', @journey.booking_documents.url, class: "btn btn-default btn-lg" %>
 
     <%= link_to "Edit", edit_trip_journey_path(@trip, @journey) %>
     <%= link_to "Delete", trip_journey_path(@trip, @journey),
