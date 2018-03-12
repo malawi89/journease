@@ -4,9 +4,9 @@
       <p> <%= @journey.sub_category %> <p>
       <p> <%= @journey.name == "" ? "" : "Name: " + @journey.name %> <p>
       <p> <%= @journey.departure_location == "" ? "" : "Departure location: " + @journey.departure_location %> <p>
-      <p> <%= @journey.start_time == "" ? "" : "Departure time: " + @journey.start_time.to_s %> <p>
+      <p> <%= @journey.start_time == "" ? "" : "Departure time: " + @journey.start_time.strftime("%b %e, %l:%M %p") %> <p>
       <p> <%= @journey.arrival_location == "" ? "" : "Arrival location: " + @journey.arrival_location %> <p>
-      <p> <%= @journey.end_time == "" ? "" : "Arrival time: " + @journey.end_time.to_s %> <p>
+      <p> <%= @journey.end_time == "" ? "" : "Arrival time: " + @journey.end_time.strftime("%b %e, %l:%M %p") %> <p>
       <p> <%= @journey.comments == "" ? "" : "Comments: " + @journey.comments %> <p>
 
     <%= link_to "Edit", edit_trip_journey_path(@trip, @journey) %>

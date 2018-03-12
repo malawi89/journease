@@ -5,8 +5,8 @@
     <p> <%= @activity.sub_category %> <p>
     <p> <%= @activity.name == "" ? "" : "Name: " + @activity.name %> <p>
     <p> <%= @activity.location == "" ? "" : "Location: " + @activity.location %> <p>
-    <p> <%= @activity.start_time == "" ? "" : "Check-in: " + @activity.start_time.to_s %> <p>
-    <p> <%= @activity.end_time == "" ? "" : "Check-out: " + @activity.end_time.to_s %> <p>
+    <p> <%= @activity.start_time == "" ? "" : "Check-in: " + @activity.start_time.strftime("%b %e, %l:%M %p") %> <p>
+    <p> <%= @activity.end_time == "" ? "" : "Check-out: " + @activity.end_time.strftime("%b %e, %l:%M %p") %> <p>
     <p> <%= @activity.comments == "" ? "" : "Comments: " + @activity.comments %> <p>
 
     <%= link_to "Edit", edit_trip_activity_path(@trip, @activity) %>

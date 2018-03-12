@@ -5,8 +5,8 @@
     <p> <%= @accommodation.sub_category %> <p>
     <p> <%= @accommodation.name == "" ? "" : "Name: " + @accommodation.name %> <p>
     <p> <%= @accommodation.location == "" ? "" : "Location: " + @accommodation.location %> <p>
-    <p> <%= @accommodation.start_time == "" ? "" : "Check-in: " + @accommodation.start_time.to_s %> <p>
-    <p> <%= @accommodation.end_time == "" ? "" : "Check-out: " + @accommodation.end_time.to_s %> <p>
+    <p> <%= @accommodation.start_time == "" ? "" : "Check-in: " + @accommodation.start_time.strftime("%b %e, %l:%M %p") %> <p>
+    <p> <%= @accommodation.end_time == "" ? "" : "Check-out: " + @accommodation.end_time.strftime("%b %e, %l:%M %p") %> <p>
     <p> <%= @accommodation.comments == "" ? "" : "Comments: " + @accommodation.comments %> <p>
 
 
