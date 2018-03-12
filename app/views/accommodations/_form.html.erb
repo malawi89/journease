@@ -12,7 +12,8 @@
     <%= f.input :end_time, as: :string, input_html: {class: "flatpicker"} %>
     <%= f.input :comments %>
     <%= f.input :contact_details %>
-    <%= f.input :booking_documents %>
+    <%= f.input :booking_documents, label: "Booking document" %>
+    <%= f.input :booking_documents_cache, as: :hidden %>
   </div>
 
   <div class="form-actions text-center">

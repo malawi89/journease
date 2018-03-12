@@ -9,6 +9,8 @@
     <p> <%= @activity.end_time == "" ? "" : "Check-out: " + @activity.end_time.strftime("%b %e, %l:%M %p") %> <p>
     <p> <%= @activity.comments == "" ? "" : "Comments: " + @activity.comments %> <p>
 
+    <%= link_to 'Download Documents', @activity.photo.url, class: "btn btn-default btn-lg" %>
+
     <%= link_to "Edit", edit_trip_activity_path(@trip, @activity) %>
     <%= link_to "Delete", trip_activity_path(@trip, @activity),
           method: :delete,
@@ -16,3 +18,6 @@
     <%= link_to "Return to trip", trip_path(@trip) %>
   </div>
 </div>
+
+
+
