@@ -5,8 +5,8 @@
     <p> <%= @activity.sub_category %> <p>
     <p> <%= @activity.name == "" ? "" : "Name: " + @activity.name %> <p>
     <p> <%= @activity.location == "" ? "" : "Location: " + @activity.location %> <p>
-    <p> <%= @activity.start_time == "" ? "" : "Check-in: " + @activity.start_time.to_s %> <p>
-    <p> <%= @activity.end_time == "" ? "" : "Check-out: " + @activity.end_time.to_s %> <p>
+    <p> <%= @activity.start_time == "" ? "" : "Check-in: " + @activity.start_time.strftime("%b %e, %l:%M %p") %> <p>
+    <p> <%= @activity.end_time == "" ? "" : "Check-out: " + @activity.end_time.strftime("%b %e, %l:%M %p") %> <p>
     <p> <%= @activity.booking_references == "" ? "" : "Booking references: " + @activity.booking_references %> <p>
     <p> <%= @activity.comments == "" ? "" : "Comments: " + @activity.comments %> <p>
     <p> <%= @activity.contact_details == "" ? "" : "Contact details: " + @activity.contact_details%> <p>
