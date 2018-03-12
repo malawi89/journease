@@ -28,6 +28,7 @@ class JourneysController < ApplicationController
 
   def update
     if @journey.update(journey_params)
+      authorize @journey
       redirect_to trip_journey_path(@trip, @journey)
     else
       render :edit

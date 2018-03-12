@@ -71,7 +71,6 @@ class TripsController < ApplicationController
 
     def all
       @trips = current_user.trips
-
       authorize @trips
     end
 
@@ -81,6 +80,7 @@ class TripsController < ApplicationController
     end
 
     def update
+      authorize @trip
       if @trip.update(trip_params)
         redirect_to trip_path(@trip)
       else
@@ -89,6 +89,7 @@ class TripsController < ApplicationController
     end
 
     def destroy
+      authorize @trip
       @trip.destroy
       redirect_to items_path
     end
