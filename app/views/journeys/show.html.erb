@@ -3,16 +3,11 @@
     <h1><%= @journey.name %></h1>
       <p> <%= @journey.sub_category %> <p>
       <p> <%= @journey.name == "" ? "" : "Name: " + @journey.name %> <p>
-      <p> <%= @journey.travel_company == "" ? "" : "Travel company: " + @journey.travel_company %> <p>
-      <p> <%= @journey.travel_number == "" ? "" : "Travel number: " + @journey.travel_number %> <p>
       <p> <%= @journey.departure_location == "" ? "" : "Departure location: " + @journey.departure_location %> <p>
-      <p> <%= @journey.seats == "" ? "" : "Seats: " + @journey.seats %> <p>
       <p> <%= @journey.start_time == "" ? "" : "Departure time: " + @journey.start_time.to_s %> <p>
       <p> <%= @journey.arrival_location == "" ? "" : "Arrival location: " + @journey.arrival_location %> <p>
       <p> <%= @journey.end_time == "" ? "" : "Arrival time: " + @journey.end_time.to_s %> <p>
-      <p> <%= @journey.booking_references == "" ? "" : "Booking references: " + @journey.booking_references %> <p>
       <p> <%= @journey.comments == "" ? "" : "Comments: " + @journey.comments %> <p>
-      <p> <%= @journey.contact_details == "" ? "" : "Contact details: " + @journey.contact_details%> <p>
 
     <%= link_to "Edit", edit_trip_journey_path(@trip, @journey) %>
     <%= link_to "Delete", trip_journey_path(@trip, @journey),
