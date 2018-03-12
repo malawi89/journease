@@ -96,7 +96,6 @@ class TripsController < ApplicationController
 
     def set_trip
       @trip = Trip.find(params[:id])
-      authorize @trip
     end
 
     def trip_params
