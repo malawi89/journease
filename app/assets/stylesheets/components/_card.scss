@@ -1,6 +1,5 @@
 .card {
   margin-top: 3px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   color: black;
   margin-bottom: 10px;
   display: flex;
@@ -9,6 +8,12 @@
   justify-content: space-between;
   height: 80px;
   background-color: white;
+  border-radius: 13px;
+  font-weight: bold;
+
+  h4{
+    font-weight: bold;
+  }
 
   a{
     font-size: 12px;
