@@ -1,7 +1,7 @@
 <div class="minheight">
   <div class="container">
+    <%= render 'shared/'+ @accommodation.sub_category.downcase %>
     <h1><%= @accommodation.name %></h1>
-
     <p> <%= @accommodation.sub_category %> <p>
     <p> <%= @accommodation.name == "" ? "" : "Name: " + @accommodation.name %> <p>
     <p> <%= @accommodation.location == "" ? "" : "Location: " + @accommodation.location %> <p>
@@ -17,5 +17,7 @@
           method: :delete,
           data: { confirm: "Are you sure?" } %>
     <%= link_to "Return to trip", trip_path(@trip) %>
+
+    </div>
   </div>
 </div>
