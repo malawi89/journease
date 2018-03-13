@@ -55,7 +55,7 @@
           <div class="col-xs-12 col-md-4">
             <div class="card">
               <div class="card-show">
-               <% if milestone.class == Journey %>
+                <% if milestone.class == Journey %>
                   <%= link_to " ", trip_journey_path(@trip, milestone.id), class: "card-links"%>
                 <% elsif milestone.class == Accommodation %>
                   <%= link_to " ", trip_accommodation_path(@trip, milestone.id), class: "card-links"%>
@@ -81,6 +81,7 @@
                   <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
                   <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
                 </div>
+
               </div>
               <div class="map">
                 <% if milestone.class == Journey %>
@@ -131,11 +132,9 @@
                       <% end %>
                     </div>
                   </div>
-
                 </div>
               </div>
               </div>
-              <% end  %>
             </div>
           </div>
         <% else %>
