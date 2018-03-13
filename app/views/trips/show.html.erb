@@ -46,56 +46,105 @@
     <% milestones.sort_by! {|obj| obj.start_time}  %>
 
     <!-- displays all the journeys, accommodations and activities as links sorted by start time -->
-
-
+    <div class="row text-center date-display">
+      <%= display_date = milestones[0].start_time.strftime("%d/%m") %>
+    </div>
     <div class="row">
       <% milestones.each do |milestone| %>
-        <div class="col-xs-12 col-md-4">
-
-          <div class="card">
-            <div class="card-show">
-             <% if milestone.class == Journey %>
-                <%= link_to " ", trip_journey_path(@trip, milestone.id), class: "card-links"%>
-              <% elsif milestone.class == Accommodation %>
-                <%= link_to " ", trip_accommodation_path(@trip, milestone.id), class: "card-links"%>
-              <% else %>
-                <%= link_to " ",trip_activity_path(@trip, milestone.id), class: "card-links" %>
-              <% end %>
-
-
-              <div class="card-logo">
-                <% if milestone.class == Journey %>
-                  <%=  cl_image_tag("vhxymlwbyas92vn0xt3t.png")%>
-                  <%= link_to "",trip_journey_path(@trip, milestone.id)%>
+        <% if display_date == milestone.start_time.strftime("%d/%m") %>
+          <div class="col-xs-12 col-md-4">
+            <div class="card">
+              <div class="card-show">
+               <% if milestone.class == Journey %>
+                  <%= link_to " ", trip_journey_path(@trip, milestone.id), class: "card-links"%>
                 <% elsif milestone.class == Accommodation %>
-                  <%=  cl_image_tag("jfbccx4toxcer0qc4n63.png")%>
-                  <%= link_to "",trip_accommodation_path(@trip, milestone.id)%>
+                  <%= link_to " ", trip_accommodation_path(@trip, milestone.id), class: "card-links"%>
                 <% else %>
-                  <%= cl_image_tag("mhahcepdqrlpexnwu7ve.png") %>
-                  <%= link_to "",trip_activity_path(@trip, milestone.id)%>
+                  <%= link_to " ",trip_activity_path(@trip, milestone.id), class: "card-links" %>
                 <% end %>
-              </div>
 
-              <div class="card-info">
-                <h4><%= milestone.name %></h4>
-                <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
-                <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
-              </div>
+                <div class="card-logo">
+                  <% if milestone.class == Journey %>
+                    <%=  cl_image_tag("vhxymlwbyas92vn0xt3t.png")%>
+                    <%= link_to "",trip_journey_path(@trip, milestone.id)%>
+                  <% elsif milestone.class == Accommodation %>
+                    <%=  cl_image_tag("jfbccx4toxcer0qc4n63.png")%>
+                    <%= link_to "",trip_accommodation_path(@trip, milestone.id)%>
+                  <% else %>
+                    <%= cl_image_tag("mhahcepdqrlpexnwu7ve.png") %>
+                    <%= link_to "",trip_activity_path(@trip, milestone.id)%>
+                  <% end %>
+                </div>
 
-            </div>
-            <div class="map">
-              <% if milestone.class == Journey %>
-                <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.departure_location}", target: '_blank' do %>
-                <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
-                <% end  %>
-              <% else %>
-                <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' do %>
+                <div class="card-info">
+                  <h4><%= milestone.name %></h4>
+                  <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
+                  <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+                </div>
+              </div>
+              <div class="map">
+                <% if milestone.class == Journey %>
+                  <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.departure_location}", target: '_blank' do %>
                   <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
+                  <% end  %>
+                <% else %>
+                  <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' do %>
+                    <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
+                  <% end  %>
                 <% end  %>
-              <% end  %>
+              </div>
             </div>
           </div>
-        </div>
+        <% else %>
+          </div>
+          <div class="row text-center date-display">
+            <%= display_date = milestone.start_time.strftime("%d/%m") %>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-md-4">
+              <div class="card">
+                <div class="card-show">
+                 <% if milestone.class == Journey %>
+                    <%= link_to " ", trip_journey_path(@trip, milestone.id), class: "card-links"%>
+                  <% elsif milestone.class == Accommodation %>
+                    <%= link_to " ", trip_accommodation_path(@trip, milestone.id), class: "card-links"%>
+                  <% else %>
+                    <%= link_to " ",trip_activity_path(@trip, milestone.id), class: "card-links" %>
+                  <% end %>
+
+                  <div class="card-logo">
+                    <% if milestone.class == Journey %>
+                      <%=  cl_image_tag("vhxymlwbyas92vn0xt3t.png")%>
+                      <%= link_to "",trip_journey_path(@trip, milestone.id)%>
+                    <% elsif milestone.class == Accommodation %>
+                      <%=  cl_image_tag("jfbccx4toxcer0qc4n63.png")%>
+                      <%= link_to "",trip_accommodation_path(@trip, milestone.id)%>
+                    <% else %>
+                      <%= cl_image_tag("mhahcepdqrlpexnwu7ve.png") %>
+                      <%= link_to "",trip_activity_path(@trip, milestone.id)%>
+                    <% end %>
+                  </div>
+
+                  <div class="card-info">
+                    <h4><%= milestone.name %></h4>
+                    <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
+                    <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+                  </div>
+                </div>
+                <div class="map">
+                  <% if milestone.class == Journey %>
+                    <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.departure_location}", target: '_blank' do %>
+                    <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
+                    <% end  %>
+                  <% else %>
+                    <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' do %>
+                      <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
+                    <% end  %>
+                  <% end  %>
+                </div>
+              </div>
+            </div>
+        <% end %>
       <% end %>
     </div>
 
