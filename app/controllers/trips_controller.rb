@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show,:update, :destroy]
+  before_action :set_trip, only: [:show,:update, :destroy, :invitation]
   # after_create :associate_user
 
     def new
@@ -94,10 +94,10 @@ class TripsController < ApplicationController
       redirect_to items_path
     end
 
-    def invitation
-      authorize @trip
-      @trip = Trip.find(params[:id])
-    end
+    # def invitation
+    #   chosen_user =
+    #   TripUser.create!(trip: @trip, user: chosen_user)
+    # end
 
     private
 

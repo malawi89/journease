@@ -5,3 +5,6 @@ class TripUser < ApplicationRecord
   validates :trip, presence: true
   validates :user, presence: true
 end
+
+
+
