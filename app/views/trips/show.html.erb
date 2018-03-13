@@ -93,6 +93,52 @@
                   <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
                 <% end  %>
               <% end  %>
+
+
+
+
+
+
+              <!-- Trigger the modal with a button -->
+              <button type="button" class="btn btn-primary btn-circle info-btn" data-toggle="modal" data-target="#myModal">i</button>
+
+              <!-- Modal -->
+              <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Type: <%=  milestone.sub_category.capitalize%></p>
+                      <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
+                      <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+                      <% if milestone.class == Journey %>
+                        <p><%= link_to "Departure Location: #{milestone.departure_location}", "https://www.google.com/maps/dir/?api=1&destination=#{milestone.departure_location}", target: '_blank' %></p>
+                        <p><%= link_to "Arrival Location: #{milestone.arrival_location}", "https://www.google.com/maps/dir/?api=1&destination=#{milestone.arrival_location}", target: '_blank' %></p>
+                      <% else %>
+                        <p><%= link_to "Location: #{milestone.location}", "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' %></p>
+                      <% end %>
+                      <p>Comments: <%= milestone.comments %></p>
+                    </div>
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
+                      <%= link_to 'Download Documents', milestone.booking_documents.url, class: "btn btn-primary" %>
+                      <% if milestone.class == Activity %>
+                        <%= link_to 'Download Photos', milestone.photo.url, class: "btn btn-primary" %>
+                      <% end %>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+
+
             </div>
           </div>
         </div>
