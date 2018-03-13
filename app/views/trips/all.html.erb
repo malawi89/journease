@@ -35,7 +35,15 @@
           <%= image_tag "collaborators.png", height: 100 %>
         </div>
         <div class="message-status">
-          <p class="status pending">Upcoming</p>
+          <div class="status pending">
+            <% if ( Date.today <=> trip.start_date) == -1 %>
+              <p style= "color:blue"><%= (trip.start_date - Date.today).to_i %> days to go!</p>
+              <% elsif (  trip.end_date <=> Date.today) == -1%>
+                <p style= "color:red">Finished Trip</p>
+              <% else %>
+              <p style = "color: green">Active Trip</p>
+              <% end %>
+          </div>
 
           <p class="price">Miles: <%= rand(500..1500) %></p>
         </div>

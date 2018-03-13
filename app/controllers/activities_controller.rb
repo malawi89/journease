@@ -10,10 +10,10 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new(activity_params)
-    authorize @activity
     @activity.trip = @trip
     if @activity.save
       redirect_to trip_activity_path(@trip, @activity)
+      authorize @activity
     else
       render :new
     end
