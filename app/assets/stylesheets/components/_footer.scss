@@ -4,8 +4,9 @@
   align-items: center;
   justify-content: space-between;
   height: 70px;
-  padding: 0px 50px;
+  padding: 0px 20px;
   color: rgba(0,0,0,0.3);
+  margin-top: 30px;
 }
 .footer-links {
   display: flex;
@@ -25,3 +26,6 @@
   color: #BCBABA;
 }
 
+.copyright-size {
+  font-size: 15px;
+}
