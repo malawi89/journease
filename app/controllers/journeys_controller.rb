@@ -4,6 +4,7 @@ class JourneysController < ApplicationController
 
   def new
     @journey = Journey.new
+    @journey.trip = Trip.find(params[:trip_id])
     authorize @journey
   end
 

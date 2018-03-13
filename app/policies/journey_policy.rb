@@ -5,35 +5,21 @@ class JourneyPolicy < ApplicationPolicy
     end
   end
 
-  def new?
-    true
+  def show?
+    record.trip.users.include?(user)
   end
 
   def create?
-    true
+    record.trip.users.include?(user)
   end
 
-  def edit?
-    true
-  end
 
   def update?
-    # trip doesn't have user
-    #to get user check connected tripuser and find the user that created the trip
-
-    if TripUser.find_by(@trip).user.id.nil?
-      false
-    else
-      true
-    end
+    record.trip.users.include?(user)
   end
 
   def destroy?
-    if TripUser.find_by(@trip).user.id.nil?
-      false
-    else
-      true
-    end
+    record.trip.users.include?(user)
   end
 
 end

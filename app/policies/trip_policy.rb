@@ -13,8 +13,18 @@ class TripPolicy < ApplicationPolicy
     true
   end
 
-  def edit?
+  def show?
+    # this is turned into true for testing puspuses
+    # You should switch to:
+    # record.users.include?(user)
     true
+  end
+
+  def edit?
+    trip_user_id = TripUser.find_by(trip_id:record.id).user.id
+    created_by = User.find(trip_user_id)
+    # #check if the user the created the trip is the same as current_user and return true of false
+    return created_by == user
   end
 
   def update?
@@ -28,7 +38,10 @@ class TripPolicy < ApplicationPolicy
 
   def destroy?
     # to be modified like update
-    record.user == user
+    trip_user_id = TripUser.find_by(trip_id:record.id).user.id
+    created_by = User.find(trip_user_id)
+    # #check if the user the created the trip is the same as current_user and return true of false
+    return created_by == user
   end
 
   def all?
