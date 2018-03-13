@@ -10,10 +10,10 @@ class JourneysController < ApplicationController
 
   def create
     @journey = Journey.new(journey_params)
-    authorize @journey
     @journey.trip = @trip
     if @journey.save
       redirect_to trip_journey_path(@trip, @journey)
+      authorize @journey
     else
       render :new
     end
