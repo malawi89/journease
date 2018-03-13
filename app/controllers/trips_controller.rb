@@ -94,6 +94,11 @@ class TripsController < ApplicationController
       redirect_to items_path
     end
 
+    def invitation
+      authorize @trip
+      @trip = Trip.find(params[:id])
+    end
+
     private
 
     def set_trip

@@ -44,6 +44,10 @@ class TripPolicy < ApplicationPolicy
     return created_by == user
   end
 
+  def invitation?
+    true
+  end
+
   def all?
     true
   end
