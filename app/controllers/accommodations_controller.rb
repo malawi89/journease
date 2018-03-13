@@ -4,6 +4,7 @@ class AccommodationsController < ApplicationController
 
   def new
     @accommodation = Accommodation.new
+    @accommodation.trip = Trip.find(params[:trip_id])
     authorize @accommodation
   end
 
