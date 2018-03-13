@@ -49,9 +49,7 @@
     <% milestones.sort_by! {|obj| obj.start_time}  %>
 
     <!-- displays all the journeys, accommodations and activities as links sorted by start time -->
-    <div class="row text-center date-display">
-      <%= display_date = milestones[0].start_time.strftime("%d/%m") %>
-    </div>
+
     <div class="row">
       <% milestones.each do |milestone| %>
         <% if display_date == milestone.start_time.strftime("%d/%m") %>
@@ -246,4 +244,9 @@
 </div>
 
 
+<div>
+  <% @trip.trip_users.each do |user| %>
+    <%= user.user.first_name %>
+  <% end %>
+</div>
 
