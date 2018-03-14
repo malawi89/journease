@@ -4,6 +4,7 @@ class Journey < ApplicationRecord
   geocoded_by :arrival_location
   after_validation :geocode, if: :will_save_change_to_arrival_location?
 
+
    def slug
     "#{self.class.to_s.downcase}_#{self.id}"
   end

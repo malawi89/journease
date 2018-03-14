@@ -25,6 +25,17 @@
       <div class="col-xs-12 col-md-4" style="text-align:center">
         <%= link_to "Add an activity", new_trip_activity_path(@trip), class:"btn btn-primary btn-fixed" %>
       </div>
+      <div class="col-xs-12 col-md-12" style="text-align:center">
+        <!-- <form action="">
+          <input type="text" placeholder="add a friend to this trip">
+          <input type="submit" placeholder="invite" class="btn btn-success btn-fixed">
+        </form> -->
+        <%= simple_form_for :add_friend, url: trip_user_add_path(params[:id]) do |f| %>
+          <%= f.input :email  %>
+          <%= f.submit %>
+        <% end %>
+
+      </div>
     </div>
     <div class="row">
       <h1></h1>
@@ -43,13 +54,13 @@
     <% @trip.activities.each do |activity| %>
       <% milestones << activity %>
     <% end %>
-
     <!-- stores all the journeys, accommodations and activities by start time -->
     <% if milestones == [] %>
       <h4 class="text-center"> <%= "Nothing planned for the moment :)" %> </h4>
     <% else %>
 
       <% milestones.sort_by! {|obj| obj.start_time unless obj.start_time.nil?}  %>
+
 
       <!-- displays all the journeys, accommodations and activities as links sorted by start time -->
       <div class="row text-center date-display">
@@ -75,7 +86,6 @@
                       <%= link_to "",trip_activity_path(@trip, milestone.id)%>
                     <% end %>
                   </div>
-
                   <div class="card-info">
                     <h4><%= milestone.name %></h4>
                     <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
@@ -94,6 +104,7 @@
                   <% end  %>
                    <!-- Trigger the modal with a button -->
 
+
                   <!-- Modal -->
                   <div id="myModal_<%= milestone.slug %>" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -105,7 +116,9 @@
                           <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
                         </div>
                         <div class="modal-body">
-                          <p>Type: milestone.sub_category.capitalize%></p>
+
+                          <p>Type: <%=  milestone.sub_category.capitalize%></p>
+
                           <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
                           <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
                           <% if milestone.class == Journey %>
@@ -146,6 +159,7 @@
                   <div class="card-show">
                     <button type="button" class="btn  card-links" data-toggle="modal" data-target="#myModal_<%= milestone.slug %>"></button>
 
+
                     <div class="card-logo">
                       <% if milestone.class == Journey %>
                         <%= render 'shared/'+milestone.sub_category.downcase %>
@@ -177,6 +191,7 @@
                     <% end  %>
                      <!-- Trigger the modal with a button -->
 
+
                     <!-- Modal -->
                     <div id="myModal_<%= milestone.slug %>" class="modal fade" role="dialog">
                   <div class="modal-dialog">
@@ -188,7 +203,9 @@
                         <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
                       </div>
                       <div class="modal-body">
+
                         <p>Type: <%= milestone.sub_category.capitalize%></p>
+
                         <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
                         <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
                         <% if milestone.class == Journey %>
@@ -222,7 +239,6 @@
       <% end %>
       <% end %>
     </div>
-
     <div
       id="map"
       style="width: 100%;
@@ -231,3 +247,11 @@
     ></div>
   </div>
 </div>
+
+
+<div>
+  <% @trip.trip_users.each do |user| %>
+    <%= user.user.first_name %>
+  <% end %>
+</div>
+

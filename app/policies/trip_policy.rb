@@ -16,8 +16,8 @@ class TripPolicy < ApplicationPolicy
   def show?
     # this is turned into true for testing puspuses
     # You should switch to:
-    # record.users.include?(user)
-    true
+    record.users.include?(user)
+    # true
   end
 
   def edit?
@@ -42,6 +42,10 @@ class TripPolicy < ApplicationPolicy
     created_by = User.find(trip_user_id)
     # #check if the user the created the trip is the same as current_user and return true of false
     return created_by == user
+  end
+
+  def invitation?
+    true
   end
 
   def all?
