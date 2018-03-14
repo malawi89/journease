@@ -31,8 +31,12 @@
           <input type="submit" placeholder="invite" class="btn btn-success btn-fixed">
         </form> -->
         <%= simple_form_for :add_friend, url: trip_user_add_path(params[:id]) do |f| %>
-          <%= f.input :email  %>
-          <%= f.submit %>
+          <%= f.input :email, label: 'Invite a friend: ', placeholder: 'email address'  %>
+          <%= f.submit 'Invite'%>
+        <% end %>
+        <div>
+          <% @trip.trip_users.each do |user| %>
+          <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
         <% end %>
 
       </div>
@@ -248,10 +252,5 @@
   </div>
 </div>
 
-
-<div>
-  <% @trip.trip_users.each do |user| %>
-    <%= user.user.first_name %>
-  <% end %>
 </div>
 
