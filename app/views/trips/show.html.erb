@@ -47,7 +47,7 @@
       <h4 class="text-center"> <%= "Nothing planned for the moment :)" %> </h4>
     <% else %>
 
-      <% milestones.sort_by! {|obj| obj.start_time}  %>
+      <% milestones.sort_by! {|obj| obj.start_time unless obj.start_time.nil?}  %>
 
       <!-- displays all the journeys, accommodations and activities as links sorted by start time -->
       <div class="row text-center date-display">
@@ -63,13 +63,13 @@
 
                   <div class="card-logo">
                     <% if milestone.class == Journey %>
-                      <%=  cl_image_tag("vhxymlwbyas92vn0xt3t.png")%>
+                      <%= render 'shared/'+milestone.sub_category.downcase %>
                       <%= link_to "",trip_journey_path(@trip, milestone.id)%>
                     <% elsif milestone.class == Accommodation %>
-                      <%=  cl_image_tag("jfbccx4toxcer0qc4n63.png")%>
+                      <%= render 'shared/'+milestone.sub_category.downcase %>
                       <%= link_to "",trip_accommodation_path(@trip, milestone.id)%>
                     <% else %>
-                      <%= cl_image_tag("mhahcepdqrlpexnwu7ve.png") %>
+                      <%= render 'shared/'+milestone.sub_category.downcase %>
                       <%= link_to "",trip_activity_path(@trip, milestone.id)%>
                     <% end %>
                   </div>
@@ -103,7 +103,7 @@
                           <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
                         </div>
                         <div class="modal-body">
-                          <p>Type: <%=  milestone.sub_category.capitalize%></p>
+                          <p>Type: milestone.sub_category.capitalize%></p>
                           <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
                           <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
                           <% if milestone.class == Journey %>
@@ -146,13 +146,13 @@
 
                     <div class="card-logo">
                       <% if milestone.class == Journey %>
-                        <%=  cl_image_tag("vhxymlwbyas92vn0xt3t.png")%>
+                        <%= render 'shared/'+milestone.sub_category.downcase %>
                         <%= link_to "",trip_journey_path(@trip, milestone.id)%>
                       <% elsif milestone.class == Accommodation %>
-                        <%=  cl_image_tag("jfbccx4toxcer0qc4n63.png")%>
+                        <%= render 'shared/'+milestone.sub_category.downcase %>
                         <%= link_to "",trip_accommodation_path(@trip, milestone.id)%>
                       <% else %>
-                        <%= cl_image_tag("mhahcepdqrlpexnwu7ve.png") %>
+                        <%= render 'shared/'+milestone.sub_category.downcase %>
                         <%= link_to "",trip_activity_path(@trip, milestone.id)%>
                       <% end %>
                     </div>
@@ -186,7 +186,7 @@
                         <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
                       </div>
                       <div class="modal-body">
-                        <p>Type: <%=  milestone.sub_category.capitalize%></p>
+                        <p>Type: <%= milestone.sub_category.capitalize%></p>
                         <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
                         <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
                         <% if milestone.class == Journey %>
