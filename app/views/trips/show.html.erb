@@ -1,3 +1,5 @@
+<% content_for :meta_title, @trip.name + " " + @trip.start_date.strftime("%b %e ").to_s + "-" + @trip.end_date.strftime("%b %e ").to_s   %>
+
 <div class="minheight">
   <div class="container">
 
