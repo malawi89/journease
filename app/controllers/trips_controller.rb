@@ -40,28 +40,31 @@ class TripsController < ApplicationController
 
       @markers = []
       @accommodations.each do |accommodation|
+        icon = { url: ActionController::Base.helpers.asset_path(accommodation.sub_category.downcase+".png") }
         @markers << {
           lat: accommodation.latitude,
           lng: accommodation.longitude,
-          icon: "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520532554/jfbccx4toxcer0qc4n63.png",
+          icon: icon,
           infoWindow: { content: render_to_string(partial: "/accommodations/map_box", locals: { accommodation: accommodation }) }
         }
       end
 
       @activities.each do |activity|
+        icon = { url: ActionController::Base.helpers.asset_path(activity.sub_category.downcase+".png") }
         @markers << {
           lat: activity.latitude,
           lng: activity.longitude,
-          icon: "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520532752/mhahcepdqrlpexnwu7ve.png",
+          icon: icon,
           infoWindow: { content: render_to_string(partial: "/activities/map_box", locals: { activity: activity }) }
         }
       end
 
       @journeys.each do |journey|
+        icon = { url: ActionController::Base.helpers.asset_path(journey.sub_category.downcase+".png") }
         @markers << {
           lat: journey.latitude,
           lng: journey.longitude,
-          icon: "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520532187/vhxymlwbyas92vn0xt3t.png",
+          icon: icon,
           infoWindow: { content: render_to_string(partial: "/journeys/map_box", locals: { journey: journey }) },
           # id: journey.id
         }
