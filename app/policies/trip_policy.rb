@@ -16,8 +16,8 @@ class TripPolicy < ApplicationPolicy
   def show?
     # this is turned into true for testing puspuses
     # You should switch to:
-    # record.users.include?(user)
-    true
+    record.users.include?(user)
+    # true
   end
 
   def edit?

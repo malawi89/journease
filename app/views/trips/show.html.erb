@@ -24,7 +24,15 @@
         <%= link_to "Add an activity", new_trip_activity_path(@trip), class:"btn btn-primary btn-fixed" %>
       </div>
       <div class="col-xs-12 col-md-12" style="text-align:center">
-        <%= link_to "Add a friend", invitation_path(@trip), class:"btn btn-success btn-fixed" %>
+        <!-- <form action="">
+          <input type="text" placeholder="add a friend to this trip">
+          <input type="submit" placeholder="invite" class="btn btn-success btn-fixed">
+        </form> -->
+        <%= simple_form_for :add_friend, url: trip_user_add_path(params[:id]) do |f| %>
+          <%= f.input :email  %>
+          <%= f.submit %>
+        <% end %>
+
       </div>
     </div>
     <div class="row">
@@ -44,117 +52,22 @@
     <% @trip.activities.each do |activity| %>
       <% milestones << activity %>
     <% end %>
-
     <!-- stores all the journeys, accommodations and activities by start time -->
-    <% milestones.sort_by! {|obj| obj.start_time}  %>
-
-    <!-- displays all the journeys, accommodations and activities as links sorted by start time -->
-
-    <div class="row">
-      <% milestones.each do |milestone| %>
-        <% if display_date == milestone.start_time.strftime("%d/%m") %>
-          <div class="col-xs-12 col-md-4">
-            <div class="card">
-              <div class="card-show">
-                <% if milestone.class == Journey %>
-                  <%= link_to " ", trip_journey_path(@trip, milestone.id), class: "card-links"%>
-                <% elsif milestone.class == Accommodation %>
-                  <%= link_to " ", trip_accommodation_path(@trip, milestone.id), class: "card-links"%>
-                <% else %>
-                  <%= link_to " ",trip_activity_path(@trip, milestone.id), class: "card-links" %>
-                <% end %>
-
-                <div class="card-logo">
-                  <% if milestone.class == Journey %>
-                    <%=  cl_image_tag("vhxymlwbyas92vn0xt3t.png")%>
-                    <%= link_to "",trip_journey_path(@trip, milestone.id)%>
-                  <% elsif milestone.class == Accommodation %>
-                    <%=  cl_image_tag("jfbccx4toxcer0qc4n63.png")%>
-                    <%= link_to "",trip_accommodation_path(@trip, milestone.id)%>
-                  <% else %>
-                    <%= cl_image_tag("mhahcepdqrlpexnwu7ve.png") %>
-                    <%= link_to "",trip_activity_path(@trip, milestone.id)%>
-                  <% end %>
-                </div>
-
-                <div class="card-info">
-                  <h4><%= milestone.name %></h4>
-                  <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
-                  <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
-                </div>
-
-              </div>
-              <div class="map">
-                <% if milestone.class == Journey %>
-                  <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.departure_location}", target: '_blank' do %>
-                  <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
-                  <% end  %>
-                <% else %>
-                  <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' do %>
-                    <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
-                  <% end  %>
-                <% end  %>
-                 <!-- Trigger the modal with a button -->
-              <button type="button" class="btn btn-primary info-btn" data-toggle="modal" data-target="#myModal">i</button>
-
-              <!-- Modal -->
-              <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
-                    </div>
-                    <div class="modal-body">
-                      <p>Type: <%=  milestone.sub_category.capitalize%></p>
-                      <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
-                      <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
-                      <% if milestone.class == Journey %>
-                        <p>Departure Location: <%= milestone.departure_location %></p>
-                        <p>Arrival Location: <%= milestone.arrival_location %></p>
-                      <% else %>
-                        <p>Location: <%=milestone.location %> <%= link_to "(Get Directions)", "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' %></p>
-                      <% end %>
-                      <p>Comments: <%= milestone.comments %></p>
-                    </div>
-                    <div class="modal-footer">
-                      <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
-                      <% if milestone.class == Journey %>
-                        <%= link_to 'Get Directions', milestone.departure_location, class: "btn btn-primary", target: '_blank'%>
-                      <% else %>
-                        <%= link_to 'Get Directions', milestone.location, class: "btn btn-primary", target: '_blank' %>
-                      <% end %>
-
-                      <%= link_to 'Download Document', milestone.booking_documents.url, class: "btn btn-primary" %>
-                      <% if milestone.class == Activity %>
-                        <%= link_to 'Download Photos', milestone.photo.url, class: "btn btn-primary" %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        <% else %>
-          </div>
-          <div class="row text-center date-display">
-            <%= display_date = milestone.start_time.strftime("%d/%m") %>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 col-md-4">
+    <% if milestones == [] %>
+      <h4 class="text-center"> <%= "Nothing planned for the moment :)" %> </h4>
+    <% else %>
+      <% milestones.sort_by! {|obj| obj.start_time}  %>
+      <!-- displays all the journeys, accommodations and activities as links sorted by start time -->
+      <div class="row text-center date-display">
+        <%= display_date = milestones[0].start_time.strftime("%d/%m") %>
+      </div>
+      <div class="row">
+        <% milestones.each do |milestone| %>
+          <% if display_date == milestone.start_time.strftime("%d/%m") %>
+            <div class="col-xs-12 col-sm-6 col-md-4">
               <div class="card">
                 <div class="card-show">
-                 <% if milestone.class == Journey %>
-                    <%= link_to " ", trip_journey_path(@trip, milestone.id), class: "card-links"%>
-                  <% elsif milestone.class == Accommodation %>
-                    <%= link_to " ", trip_accommodation_path(@trip, milestone.id), class: "card-links"%>
-                  <% else %>
-                    <%= link_to " ",trip_activity_path(@trip, milestone.id), class: "card-links" %>
-                  <% end %>
-
+                  <button type="button" class="btn btn-primary-outline card-links" data-toggle="modal" data-target="#myModal_<%= milestone.slug %>"></button>
                   <div class="card-logo">
                     <% if milestone.class == Journey %>
                       <%=  cl_image_tag("vhxymlwbyas92vn0xt3t.png")%>
@@ -167,7 +80,6 @@
                       <%= link_to "",trip_activity_path(@trip, milestone.id)%>
                     <% end %>
                   </div>
-
                   <div class="card-info">
                     <h4><%= milestone.name %></h4>
                     <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
@@ -185,55 +97,127 @@
                     <% end  %>
                   <% end  %>
                    <!-- Trigger the modal with a button -->
-              <button type="button" class="btn btn-primary info-btn" data-toggle="modal" data-target="#myModal">i</button>
-
-              <!-- Modal -->
-              <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
-                    </div>
-                    <div class="modal-body">
-                      <p>Type: <%=  milestone.sub_category.capitalize%></p>
-                      <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
-                      <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
-                      <% if milestone.class == Journey %>
-                        <p>Departure Location: <%= milestone.departure_location %></p>
-                        <p>Arrival Location: <%= milestone.arrival_location %></p>
-                      <% else %>
-                        <p>Location: <%=milestone.location %> <%= link_to "(Get Directions)", "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' %></p>
-                      <% end %>
-                      <p>Comments: <%= milestone.comments %></p>
-                    </div>
-                    <div class="modal-footer">
-                      <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
-                      <% if milestone.class == Journey %>
-                        <%= link_to 'Get Directions', milestone.departure_location, class: "btn btn-primary", target: '_blank'%>
-                      <% else %>
-                        <%= link_to 'Get Directions', milestone.location, class: "btn btn-primary", target: '_blank' %>
-                      <% end %>
-
-                      <%= link_to 'Download Document', milestone.booking_documents.url, class: "btn btn-primary" %>
-                      <% if milestone.class == Activity %>
-                        <%= link_to 'Download Photos', milestone.photo.url, class: "btn btn-primary" %>
-                      <% end %>
+                  <!-- Modal -->
+                  <div id="myModal_<%= milestone.slug %>" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>Type: <%=  milestone.sub_category.capitalize%></p>
+                          <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
+                          <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+                          <% if milestone.class == Journey %>
+                            <p>Departure Location: <%= milestone.departure_location %></p>
+                            <p>Arrival Location: <%= milestone.arrival_location %></p>
+                          <% else %>
+                            <p>Location: <%=milestone.location %> <%= link_to "(Get Directions)", "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' %></p>
+                          <% end %>
+                          <p>Comments: <%= milestone.comments %></p>
+                        </div>
+                        <div class="modal-footer">
+                          <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
+                          <% if milestone.class == Journey %>
+                            <%= link_to 'Get Directions', milestone.departure_location, class: "btn btn-primary", target: '_blank'%>
+                          <% else %>
+                            <%= link_to 'Get Directions', milestone.location, class: "btn btn-primary", target: '_blank' %>
+                          <% end %>
+                          <%= link_to 'Download Document', milestone.booking_documents.url, class: "btn btn-primary" %>
+                          <% if milestone.class == Activity %>
+                            <%= link_to 'Download Photos', milestone.photo.url, class: "btn btn-primary" %>
+                          <% end %>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
                 </div>
               </div>
-
+            </div>
+          <% else %>
+            </div>
+            <div class="row text-center date-display">
+              <%= display_date = milestone.start_time.strftime("%d/%m") %>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="card">
+                  <div class="card-show">
+                    <button type="button" class="btn  card-links" data-toggle="modal" data-target="#myModal_<%= milestone.slug %>"></button>
+                    <div class="card-logo">
+                      <% if milestone.class == Journey %>
+                        <%=  cl_image_tag("vhxymlwbyas92vn0xt3t.png")%>
+                        <%= link_to "",trip_journey_path(@trip, milestone.id)%>
+                      <% elsif milestone.class == Accommodation %>
+                        <%=  cl_image_tag("jfbccx4toxcer0qc4n63.png")%>
+                        <%= link_to "",trip_accommodation_path(@trip, milestone.id)%>
+                      <% else %>
+                        <%= cl_image_tag("mhahcepdqrlpexnwu7ve.png") %>
+                        <%= link_to "",trip_activity_path(@trip, milestone.id)%>
+                      <% end %>
+                    </div>
+                    <div class="card-info">
+                      <h4><%= milestone.name %></h4>
+                      <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
+                      <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+                    </div>
+                  </div>
+                  <div class="map">
+                    <% if milestone.class == Journey %>
+                      <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.departure_location}", target: '_blank' do %>
+                      <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
+                      <% end  %>
+                    <% else %>
+                      <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' do %>
+                        <%= cl_image_tag "http://res.cloudinary.com/dn2idxe8p/image/upload/v1520614150/map.png", class: "card-map" %>
+                      <% end  %>
+                    <% end  %>
+                     <!-- Trigger the modal with a button -->
+                    <!-- Modal -->
+                    <div id="myModal_<%= milestone.slug %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Type: <%=  milestone.sub_category.capitalize%></p>
+                        <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
+                        <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+                        <% if milestone.class == Journey %>
+                          <p>Departure Location: <%= milestone.departure_location %></p>
+                          <p>Arrival Location: <%= milestone.arrival_location %></p>
+                        <% else %>
+                          <p>Location: <%=milestone.location %> <%= link_to "(Get Directions)", "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' %></p>
+                        <% end %>
+                        <p>Comments: <%= milestone.comments %></p>
+                      </div>
+                      <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
+                        <% if milestone.class == Journey %>
+                          <%= link_to 'Get Directions', milestone.departure_location, class: "btn btn-primary", target: '_blank'%>
+                        <% else %>
+                          <%= link_to 'Get Directions', milestone.location, class: "btn btn-primary", target: '_blank' %>
+                        <% end %>
+                        <%= link_to 'Download Document', milestone.booking_documents.url, class: "btn btn-primary" %>
+                        <% if milestone.class == Activity %>
+                          <%= link_to 'Download Photos', milestone.photo.url, class: "btn btn-primary" %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
                 </div>
               </div>
             </div>
         <% end %>
       <% end %>
+      <% end %>
     </div>
-
     <div
       id="map"
       style="width: 100%;
@@ -242,7 +226,6 @@
     ></div>
   </div>
 </div>
-
 
 <div>
   <% @trip.trip_users.each do |user| %>

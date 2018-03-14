@@ -12,4 +12,10 @@ class User < ApplicationRecord
 
   has_many :trip_users, dependent: :destroy
   has_many :trips, through: :trip_users
+
+  # after_create :emnail_check
+
+  # def email_check
+  #   if self.email == stored emails, then add the trip user
+  # end
 end

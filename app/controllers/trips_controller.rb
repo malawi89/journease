@@ -94,10 +94,11 @@ class TripsController < ApplicationController
       redirect_to items_path
     end
 
-    # def invitation
-    #   chosen_user =
-    #   TripUser.create!(trip: @trip, user: chosen_user)
-    # end
+    def invitation
+      #
+      chosen_user = User.where(params[:search])
+      TripUser.new(trip: @trip, user: chosen_user)
+    end
 
     private
 

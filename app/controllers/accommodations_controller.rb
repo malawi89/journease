@@ -10,10 +10,10 @@ class AccommodationsController < ApplicationController
 
   def create
     @accommodation = Accommodation.new(accommodation_params)
-    authorize @accommodation
     @accommodation.trip = @trip
     if @accommodation.save
       redirect_to trip_accommodation_path(@trip, @accommodation)
+      authorize @accommodation
     else
       render :new
     end
