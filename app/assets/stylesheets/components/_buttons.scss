@@ -12,3 +12,12 @@
   width: 300px;
   margin: 5px;
 }
+
+#fixed-add-button {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1;
+    height: 70px;
+    width: 70px;
+}

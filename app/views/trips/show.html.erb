@@ -18,17 +18,17 @@
     <div class="row">
 
     </div>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle btn-success" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Add...
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li><%= link_to "Add a journey", new_trip_journey_path(@trip), class:"dropdown-item" %>
-</li>
-        <li><%= link_to "Add an accommodation", new_trip_accommodation_path(@trip), class:"dropdown-item" %>
-</li>
-        <li><%= link_to "Add an activity", new_trip_activity_path(@trip), class:"dropdown-item" %>
-</li>
+    <div id="fixed-add-button">
+
+      <div class="btn-group dropup">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add...
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><%= link_to "Add a journey", new_trip_journey_path(@trip), class:"dropdown-item" %></li>
+          <li><%= link_to "Add an accommodation", new_trip_accommodation_path(@trip), class:"dropdown-item" %></li>
+          <li><%= link_to "Add an activity", new_trip_activity_path(@trip), class:"dropdown-item" %></li>
+        </div>
       </div>
     </div>
     <div class="row">
