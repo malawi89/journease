@@ -13,10 +13,10 @@ class JourneysController < ApplicationController
     @journey.trip = @trip
     if @journey.save
       redirect_to trip_journey_path(@trip, @journey)
-      authorize @journey
     else
       render :new
     end
+    authorize @journey
   end
 
   def edit
@@ -29,11 +29,11 @@ class JourneysController < ApplicationController
 
   def update
     if @journey.update(journey_params)
-      authorize @journey
       redirect_to trip_journey_path(@trip, @journey)
     else
       render :edit
     end
+    authorize @journey
   end
 
   def destroy

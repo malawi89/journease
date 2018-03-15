@@ -4,10 +4,16 @@
   height: calc(100vh - 70px);
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.col-sm-6 {
+  padding: 0px;
+}
+
 .banner h1 {
   font-size: 50px;
   font-weight: bold;
@@ -38,4 +44,17 @@
 
 .banner-small {
   height: 400px;
+}
+
+.banner-xsmall {
+  height: 100px;
+}
+
+.banner-content {
+  h2 {
+    margin-bottom: 0px
+  }
+  h4 {
+    margin-top: 0px
+  }
 }
