@@ -125,16 +125,36 @@
                         </div>
                         <div class="modal-footer">
                           <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
+
                           <% if milestone.class == Journey %>
+                            <%= link_to  trip_journey_path(milestone.trip, milestone) , method: :delete do%>
+                              <i class="fas fa-trash-alt fa-2x"></i>
+                            <% end %>
+                            <%= link_to  edit_trip_journey_path(milestone.trip, milestone)do%>
+                              <i class="fas fa-edit fa-2x"></i>
+                            <% end %>
                             <%= link_to 'Get Directions', milestone.departure_location, class: "btn btn-primary", target: '_blank'%>
+                          <% elsif milestone.class == Activity %>
+                            <%= link_to  trip_activity_path(milestone.trip, milestone) do%>
+                              <i class="fas fa-trash-alt fa-2x"></i>
+                            <% end %>
+                            <%= link_to  edit_trip_activity_path(milestone.trip, milestone)do%>
+                              <i class="fas fa-edit fa-2x"></i>
+                            <% end %>
+                            <%= link_to 'Get Directions', milestone.location, class: "btn btn-primary", target: '_blank' %>
+                            <%= link_to 'Download Photos', milestone.photo.url, class: "btn btn-primary" %>
                           <% else %>
+                            <%= link_to  trip_accommodation_path(milestone.trip, milestone) do%>
+                            <i class="fas fa-trash-alt fa-2x"></i>
+                            <% end %>
+                            <%= link_to  edit_trip_accommodation_path(milestone.trip, milestone)do%>
+                              <i class="fas fa-edit fa-2x"></i>
+                            <% end %>
                             <%= link_to 'Get Directions', milestone.location, class: "btn btn-primary", target: '_blank' %>
                           <% end %>
 
                           <%= link_to 'Download Document', milestone.booking_documents.url, class: "btn btn-primary" %>
-                          <% if milestone.class == Activity %>
-                            <%= link_to 'Download Photos', milestone.photo.url, class: "btn btn-primary" %>
-                          <% end %>
+
                         </div>
                       </div>
                     </div>
