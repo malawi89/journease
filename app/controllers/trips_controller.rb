@@ -74,6 +74,7 @@ class TripsController < ApplicationController
     end
 
     def all
+
       @trips = Trip.joins(:trip_users).where(trip_users: {user_id: current_user.id})
       @past_trips = []
       @current_trips = []
@@ -86,7 +87,7 @@ class TripsController < ApplicationController
         end
       end
     end
-
+  
     def edit
       @trip = Trip.find(params[:id])
       authorize @trip

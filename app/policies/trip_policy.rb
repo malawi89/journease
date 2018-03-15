@@ -52,8 +52,4 @@ class TripPolicy < ApplicationPolicy
     true
   end
 
-  def all?
-    true
-  end
-
 end

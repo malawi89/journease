@@ -9,7 +9,7 @@ class Accommodation < ApplicationRecord
   validates :end_time, presence: true
   validates :location, presence: true
 
-   def slug
+  def slug
     "#{self.class.to_s.downcase}_#{self.id}"
   end
 end
