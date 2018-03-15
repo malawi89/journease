@@ -1,0 +1,137 @@
+
+.tripcard-desktop {
+  // margin-top: 3px;
+  color: black;
+  // margin-bottom: 10px;
+  // display: flex;
+  border: 1px solid #E6E6E6;
+  // align-items: center;
+  // justify-content: space-around;
+  // height: 80px;
+  background-color: white;
+  border-radius: 13px;
+  font-weight: bold;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+.countdown{
+  // margin: auto;
+  position: relative;
+}
+
+.details{
+  background-size: cover !important;
+  background-position: center;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  position: relative;
+  p{
+    font-size: 16px;
+  }
+  // margin-left: 10px;
+  width: 350px;
+  padding-left: 15px;
+}
+
+.travellers{
+//   svg{
+//   width: 50px;
+// }
+  .avatar-bordered {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    border: white 1px solid;
+    margin-right: -15px;
+  }
+
+  .add-elements{
+    padding-right: 10px;
+      .btn{
+        border-radius: 12px;
+      }
+    }
+}
+}
+// DONT GO ABOVE HERE DONT GO ABOVE HEREDONT GO ABOVE HEREDONT GO ABOVE HEREDONT GO ABOVE HEREDONT GO ABOVE HERE
+
+.tripcard {
+  color: black;
+  border: 1px solid #E6E6E6;
+  background-color: white;
+  border-radius: 7px;
+  font-weight: bold;
+
+  justify-content: center;
+
+
+
+
+  .countdown{
+    position: absolute;
+    color: white;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .details{
+    height: 200px;
+    padding: 20px;
+    background-size: cover !important;
+    background-position: center;
+    color: white;
+    position: relative;
+      p{
+        font-size: 16px;
+      }
+      h4{
+        margin:0;
+    }
+  }
+  .travellers{
+    display: flex;
+    align-items: center;
+    margin: 10px auto;
+    justify-content: center;
+
+     .avatar-bordered {
+       width: 50px;
+       height: 50px;
+       border-radius: 50%;
+       box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+       border: white 1px solid;
+       margin-right: -16px;
+     }
+     svg{
+      margin-left: 21px;
+     }
+    }
+
+  .add-elements{
+    margin: 15px 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  }
+
+
+
+@media (max-width: 767px) { // narrow viewport only
+    .upcoming-trips {
+      display: none;
+    }
+    .past-trips {
+        display: none;
+    }
+}
+@media (min-width: 767px) { // bigger than the narrow viewport
+    .upcoming-trips-mobile {
+        display: none;
+    }
+    .past-trips-mobile {
+        display: none;
+    }
+}
+
