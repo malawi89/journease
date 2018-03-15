@@ -1,12 +1,11 @@
 class TripPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.all
     end
   end
 
   def all?
-    raise
     true
   end
 
