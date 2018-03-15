@@ -1,46 +1,47 @@
 
 
 <div class="row">
-  <div class="col-xs-12 col-sm-6">
+  <div class="col-xs-12 col-sm-4">
     <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.4) 0%, rgba(0,0,0,0.4) 50%), url(<%= image_path ("plan_your_trip.jpg") %>);">
       <div class="banner-content">
         <h1>Plan your trip</h1>
-        <p>Planning a trip has never been simpler!</p>
-        <p>We will remind you about all the stuff that really matters</p>
+        <p>Planning a trip has never been simpler!
+        We will remind you about all the stuff that really matters</p>
         <%= user_signed_in? ? "" : (link_to "Sign up!", new_user_registration_path, class: "btn btn-danger btn-lg") %>
       </div>
     </div>
   </div>
-  <div class="col-xs-12 col-sm-6">
+  <div class="col-xs-12 col-sm-4">
     <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.0) 0%, rgba(0,0,0,0.0) 50%), url(<%= image_path ("iphone_plan_your_trip.jpg") %>);">
     </div>
   </div>
 
-  <div class="col-xs-12 col-sm-6">
-    <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.0) 0%, rgba(0,0,0,0.0) 50%), url(<%= image_path ("iphone_add_collaborators.jpg") %>);">
-    </div>
-  </div>
-  <div class="col-xs-12 col-sm-6">
+  <div class="col-xs-12 col-sm-4">
     <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.4) 0%, rgba(0,0,0,0.4) 50%), url(<%= image_path ("add_collaborators.jpg") %>);">
         <div class="banner-content">
           <h1>Add collaborators</h1>
-          <p>Your trip buddies will be able to add destinations and activities</p>
-          <p>in real time!</p>
+          <p>Your trip buddies will be able to add destinations and activities
+          in real time!</p>
         </div>
       </div>
   </div>
 
-  <div class="col-xs-12 col-sm-6">
+  <div class="col-xs-12 col-sm-4">
+    <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.0) 0%, rgba(0,0,0,0.0) 50%), url(<%= image_path ("iphone_add_collaborators.jpg") %>);">
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-4">
     <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.4) 0%, rgba(0,0,0,0.4) 50%), url(<%= image_path ("Guidance.jpg") %>);">
       <div class="banner-content">
-        <h1>Let the app guide you through your journey</h1>
-        <p>You will be able to access dates, booking references and documents, contacts and many more</p>
-        <p>You will also be able to get directions instantly!</p>
+        <h1>Let the app guide you</h1>
+        <p>You will be able to access dates, booking references and documents, contacts and many more.
+        You will also be able to get directions instantly!</p>
       </div>
     </div>
   </div>
 
-  <div class="col-xs-12 col-sm-6">
+  <div class="col-xs-12 col-sm-4">
     <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.0) 0%, rgba(0,0,0,0.0) 50%), url(<%= image_path ("iphone_guidance.png") %>);">
     </div>
   </div>
