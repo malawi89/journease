@@ -80,9 +80,9 @@
                     <% end %>
                   </div>
                   <div class="card-info">
-                    <h4><%= milestone.name %></h4>
-                    <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
-                    <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+                    <h5><%= milestone.name %></h5>
+                    <p>from: <%= milestone.start_time.strftime("%l:%M %p") %></p>
+                    <p>to: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
                   </div>
                 </div>
                 <div class="map">
@@ -109,8 +109,7 @@
                           <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
                         </div>
                         <div class="modal-body">
-
-                          <p>Type: <%=  milestone.sub_category.capitalize%></p>
+                          <h4><%=  milestone.sub_category.capitalize%></h4>
 
                           <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
                           <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
@@ -187,9 +186,9 @@
                     </div>
 
                     <div class="card-info">
-                      <h4><%= milestone.name %></h4>
-                      <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
-                      <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+                      <h5><%= milestone.name %></h5>
+                      <p>from: <%= milestone.start_time.strftime("%l:%M %p") %></p>
+                      <p>to: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
                     </div>
                   </div>
                   <div class="map">
@@ -216,8 +215,7 @@
                         <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
                       </div>
                       <div class="modal-body">
-
-                        <p>Type: <%= milestone.sub_category.capitalize%></p>
+                        <h3><%= milestone.sub_category.capitalize%></h3>
 
                         <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
                         <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
