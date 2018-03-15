@@ -13,10 +13,10 @@ class AccommodationsController < ApplicationController
     @accommodation.trip = @trip
     if @accommodation.save
       redirect_to trip_accommodation_path(@trip, @accommodation)
-      authorize @accommodation
     else
       render :new
     end
+    authorize @accommodation
   end
 
   def edit
@@ -29,11 +29,11 @@ class AccommodationsController < ApplicationController
 
   def update
     if @accommodation.update(accommodation_params)
-      authorize @accommodation
       redirect_to trip_accommodation_path(@trip, @accommodation)
     else
       render :edit
     end
+    authorize @accommodation
   end
 
   def destroy
