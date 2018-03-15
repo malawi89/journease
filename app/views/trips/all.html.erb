@@ -1,7 +1,5 @@
 <% content_for :meta_title, "Your Trips" %>
 <div class="minheight">
-<%= link_to "Add a trip", new_trip_path, class: "btn btn-primary" %>
-
   <div class="container">
 
     <div class="row">
@@ -17,11 +15,7 @@
       </div>
     </div>
 
-
-
     <div class="upcoming-trips">
-  
-
       <%  @current_trips.each do |trip|%>
         <div class="tripcard-desktop">
               <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo %>');">
@@ -70,17 +64,10 @@
                 </div>
               <div class="add-elements">
                 <button type="button" class="btn btn-primary">Add...</button>
-
-
-
-
             </div>
           </div>
         </div>
       <% end %>
-
-
-
     </div>
     <div class="container">
       <div class="upcoming-trips-mobile">
@@ -126,8 +113,6 @@
                       </div>
                       <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
-
-
                       </div>
                     </div>
                   </div>
@@ -238,7 +223,6 @@
                         <div class="modal-footer">
                           <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
 
-
                         </div>
                       </div>
                     </div>
@@ -256,6 +240,7 @@
     </div>
   </div>
 </div>
+
 
 
 

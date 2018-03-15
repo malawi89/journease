@@ -87,13 +87,17 @@ class TripsController < ApplicationController
 
       if @past_trips.empty?
       else
-      authorize @past_trips
+        @past_trips.each do |trip|
+          authorize trip
+        end
       end
 
       if @current_trips.empty?
       else
-      authorize @current_trips
-    end
+        @current_trips.each do |trip|
+          authorize trip
+        end
+      end
       # authorize @trips
     end
 
