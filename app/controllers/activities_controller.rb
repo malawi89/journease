@@ -13,10 +13,10 @@ class ActivitiesController < ApplicationController
     @activity.trip = @trip
     if @activity.save
       redirect_to trip_activity_path(@trip, @activity)
-      authorize @activity
     else
       render :new
     end
+    authorize @activity
   end
 
   def edit
@@ -29,11 +29,11 @@ class ActivitiesController < ApplicationController
 
   def update
     if @activity.update(activity_params)
-      authorize @activity
       redirect_to trip_activity_path(@trip, @activity)
     else
       render :edit
     end
+    authorize @activity
   end
 
   def destroy
