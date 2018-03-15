@@ -4,9 +4,23 @@
 
   <div class="container">
 
+    <div class="row">
+      <div class="col-xs-10">
+        <h3>Upcoming trips:</h3>
+      </div>
+      <div class="col-xs-2">
+        <button type="button" class="btn btn-success">
+          <%= link_to new_trip_path do  %>
+            <p style="text-decoration: none">Add a new trip!</p>
+          <% end %>
+        </button>
+      </div>
+    </div>
+
+
 
     <div class="upcoming-trips">
-      <h3>Upcoming Trips</h3>
+  
 
       <%  @current_trips.each do |trip|%>
         <div class="tripcard-desktop">
@@ -128,7 +142,6 @@
             </div>
           </div>
         <% end %>
-
       </div>
     </div>
 
