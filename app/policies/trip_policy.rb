@@ -5,6 +5,11 @@ class TripPolicy < ApplicationPolicy
     end
   end
 
+  def all?
+    raise
+    true
+  end
+
   def new?
     true
   end
