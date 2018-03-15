@@ -1,7 +1,7 @@
 <div class="minheight">
   <div class="container">
     <h1><%= @journey.name %></h1>
-      <p> <%= @journey.sub_category %> <p>
+      <p> <%= "By " + @journey.sub_category %> <p>
       <p> <%= @journey.name == "" ? "" : "Name: " + @journey.name %> <p>
       <p> <%= @journey.departure_location == "" ? "" : "Departure location: " + @journey.departure_location %> <p>
       <p> <%= @journey.start_time == "" ? "" : "Departure time: " + @journey.start_time.strftime("%b %e, %l:%M %p") %> <p>
@@ -10,10 +10,10 @@
       <p> <%= @journey.comments == "" ? "" : "Comments: " + @journey.comments %> <p>
       <%= link_to 'Download Documents', @journey.booking_documents.url, class: "btn btn-default btn-lg" %>
 
-    <%= link_to "Edit", edit_trip_journey_path(@trip, @journey) %>
+    <%= link_to "Edit", edit_trip_journey_path(@trip, @journey), class: "btn btn-primary btn-lg" %>
     <%= link_to "Delete", trip_journey_path(@trip, @journey),
           method: :delete,
-          data: { confirm: "Are you sure?" } %>
-    <%= link_to "Return to trip", trip_path(@trip) %>
+          data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-lg" %>
+    <%= link_to "Return to trip", trip_path(@trip), class: "btn btn-success btn-lg" %>
   </div>
 </div>

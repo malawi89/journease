@@ -11,11 +11,11 @@
 
     <%= link_to 'Download Documents', @accommodation.booking_documents.url, class: "btn btn-default btn-lg" %>
 
-    <%= link_to "Edit", edit_trip_accommodation_path(@trip, @accommodation) %>
+    <%= link_to "Edit", edit_trip_accommodation_path(@trip, @accommodation), class: "btn btn-primary btn-lg" %>
     <%= link_to "Delete", trip_accommodation_path(@trip, @accommodation),
           method: :delete,
-          data: { confirm: "Are you sure?" } %>
-    <%= link_to "Return to trip", trip_path(@trip) %>
+          data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-lg" %>
+    <%= link_to "Return to trip", trip_path(@trip), class: "btn btn-success btn-lg" %>
 
     </div>
   </div>

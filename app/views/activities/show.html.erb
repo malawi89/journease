@@ -10,13 +10,12 @@
     <p> <%= @activity.comments == "" ? "" : "Comments: " + @activity.comments %> <p>
 
     <%= link_to 'Download Documents', @activity.booking_documents.url, class: "btn btn-default btn-lg" %>
-    <%= link_to 'Download Photos', @activity.photo.url, class: "btn btn-default btn-lg" %>
 
-    <%= link_to "Edit", edit_trip_activity_path(@trip, @activity) %>
+    <%= link_to "Edit", edit_trip_activity_path(@trip, @activity), class: "btn btn-primary btn-lg" %>
     <%= link_to "Delete", trip_activity_path(@trip, @activity),
           method: :delete,
-          data: { confirm: "Are you sure?" } %>
-    <%= link_to "Return to trip", trip_path(@trip) %>
+          data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-lg" %>
+    <%= link_to "Return to trip", trip_path(@trip), class: "btn btn-success btn-lg" %>
   </div>
 </div>
 
