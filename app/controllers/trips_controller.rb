@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show,:update, :destroy, :invitation]
+  before_action :skip_authorization, only: [:all]
   # after_create :associate_user
 
     def new
@@ -73,36 +74,20 @@ class TripsController < ApplicationController
     end
 
     def all
-      if current_user.trips = []
-      else
-        @trips = current_user.trips.sort_by {|obj| obj.start_date}
-        @past_trips = []
-        @current_trips = []
 
-        @trips.each do |trip|
-          if (trip.end_date <=> Date.today) == -1
-            @past_trips << trip
-          else
-            @current_trips << trip
-          end
-        end
+      @trips = Trip.joins(:trip_users).where(trip_users: {user_id: current_user.id})
+      @past_trips = []
+      @current_trips = []
 
-        if @past_trips.empty?
+      @trips.each do |trip|
+        if (trip.end_date <=> Date.today) == -1
+          @past_trips << trip
         else
-          @past_trips.each do |trip|
-            authorize trip
-          end
+          @current_trips << trip
         end
-
-        if @current_trips.empty?
-        else
-          @current_trips.each do |trip|
-            authorize trip
-          end
-        end
-        # authorize @trips
       end
     end
+  
     def edit
       @trip = Trip.find(params[:id])
       authorize @trip
