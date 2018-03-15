@@ -2,53 +2,30 @@
 
 <div class="minheight">
   <div class="container">
-
-    <div class="banner banner-small" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.5) 0%, rgba(0,0,0,0.5) 50%), url(<%= @trip.photo %>)";>
-
-      <div class="banner-content">
+    <div class="row">
+      <div class="col-xs-12 text-center">
         <h1> <%= @trip.name %> </h1>
-        <h2> from <%= @trip.start_date.strftime("%m/%d/%Y") %> </h2>
-        <h2> to <%= @trip.end_date.strftime("%m/%d/%Y") %> </h2>
-
       </div>
     </div>
     <div class="row">
-      <h1></h1>
+      <div class="col-xs-12 col-sm-6 text-center">
+        <h4> from <%= @trip.start_date.strftime("%e %b %Y") %> to <%= @trip.end_date.strftime("%e %b %Y") %> </h4>
+      </div>
     </div>
-    <div class="row">
 
-    </div>
     <div id="fixed-add-button">
-
       <div class="btn-group dropup">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Add...
+        <button type="button" class="dropdown-toggle btn btn-danger btn-circle btn-xl" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-plus"></i>
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <li><%= link_to "Add a journey", new_trip_journey_path(@trip), class:"dropdown-item" %></li>
           <li><%= link_to "Add an accommodation", new_trip_accommodation_path(@trip), class:"dropdown-item" %></li>
           <li><%= link_to "Add an activity", new_trip_activity_path(@trip), class:"dropdown-item" %></li>
         </div>
       </div>
     </div>
-    <div class="row">
 
-      <div class="col-xs-12 col-md-12" style="text-align:center">
-        <!-- <form action="">
-          <input type="text" placeholder="add a friend to this trip">
-          <input type="submit" placeholder="invite" class="btn btn-success btn-fixed">
-        </form> -->
-        <%= simple_form_for :add_friend, url: trip_user_add_path(params[:id]) do |f| %>
-          <%= f.input :email, label: 'Invite a friend: ', placeholder: 'email address'  %>
-          <%= f.submit 'Invite'%>
-        <% end %>
-        <div>
-          <% @trip.trip_users.each do |user| %>
-          <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
-        <% end %>
-
-      </div>
-    </div>
     <div class="row">
       <h1></h1>
     </div>
