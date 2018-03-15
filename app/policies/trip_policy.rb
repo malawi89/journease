@@ -6,7 +6,6 @@ class TripPolicy < ApplicationPolicy
   end
 
   def all?
-    raise
     true
   end
 
@@ -50,10 +49,6 @@ class TripPolicy < ApplicationPolicy
   end
 
   def invitation?
-    true
-  end
-
-  def all?
     true
   end
 
