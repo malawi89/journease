@@ -11,7 +11,7 @@
         </div>
         <div class="row">
           <div class="col-xs-12 text-center">
-            <h4> from <%= @trip.start_date.strftime("%e %b %Y") %> to <%= @trip.end_date.strftime("%e %b %Y") %> </h4>
+            <h4> <%= @trip.start_date.strftime("%e %b %Y") %> - <%= @trip.end_date.strftime("%e %b %Y") %> </h4>
           </div>
         </div>
       </div>
