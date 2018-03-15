@@ -74,11 +74,10 @@ class TripsController < ApplicationController
     end
 
     def all
-
       @trips = Trip.joins(:trip_users).where(trip_users: {user_id: current_user.id})
+      @trips = @trips.sort_by{|obj| obj.start_date }
       @past_trips = []
       @current_trips = []
-
       @trips.each do |trip|
         if (trip.end_date <=> Date.today) == -1
           @past_trips << trip
@@ -86,8 +85,9 @@ class TripsController < ApplicationController
           @current_trips << trip
         end
       end
+
     end
-  
+
     def edit
       @trip = Trip.find(params[:id])
       authorize @trip
