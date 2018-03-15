@@ -1,17 +1,12 @@
 <% content_for :meta_title, "Your Trips" %>
 <div class="minheight">
   <div class="container">
-
-    <div class="row">
-      <div class="col-xs-10">
-      </div>
-      <div class="col-xs-2">
+    <div class="flex-right">
         <button type="button" class="btn btn-success">
           <%= link_to new_trip_path do  %>
             <p style="text-decoration: none">Add a new trip!</p>
           <% end %>
         </button>
-      </div>
     </div>
   </div>
 
@@ -64,9 +59,7 @@
               <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
             <% end %>
           </div>
-          <div class="add-elements">
-            <button type="button" class="btn btn-primary">Add...</button>
-          </div>
+
         </div>
       <% end %>
     </div>
@@ -124,9 +117,7 @@
                   </div>
 
 
-                  <div class="add-elements">
-                    <button type="button" class="btn btn-primary">Add...</button>
-                  </div>
+
               </div>
             </div>
           </div>
@@ -179,9 +170,7 @@
                 <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
               <% end %>
             </div>
-            <div class="add-elements">
-              <button type="button" class="btn btn-primary">Add...</button>
-            </div>
+
           </div>
 
         <% end %>
@@ -233,9 +222,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="add-elements">
-                  <button type="button" class="btn btn-primary">Add...</button>
-                </div>
+
               </div>
             </div>
           </div>
