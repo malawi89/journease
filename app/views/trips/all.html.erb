@@ -16,7 +16,8 @@
     </div>
 
     <div class="upcoming-trips">
-      <%  @current_trips.each do |trip|%>
+      <% if @current_trips = [] %>
+      <%  else @current_trips.each do |trip|%>
         <div class="tripcard-desktop">
               <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo %>');">
                 <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline card-links"%>
@@ -129,11 +130,13 @@
         <% end %>
       </div>
     </div>
+    <% end %>
 
     <div class="container">
     <div class="past-trips">
       <h3>Past Trips</h3>
-      <%  @past_trips.each do |trip|%>
+      <% if @past_trips = [] %>
+      <% else @past_trips.each do |trip|%>
         <div class="tripcard-desktop">
               <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo, crop: :fill %>');">
                 <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline card-links"%>
@@ -238,6 +241,7 @@
         </div>
     </div>
     </div>
+    <% end %>
   </div>
 </div>
 

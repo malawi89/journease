@@ -73,34 +73,36 @@ class TripsController < ApplicationController
     end
 
     def all
-      @trips = current_user.trips.sort_by {|obj| obj.start_date}
-      @past_trips = []
-      @current_trips = []
+      if current_user.trips = []
+      else
+        @trips = current_user.trips.sort_by {|obj| obj.start_date}
+        @past_trips = []
+        @current_trips = []
 
-      @trips.each do |trip|
-        if (trip.end_date <=> Date.today) == -1
-          @past_trips << trip
+        @trips.each do |trip|
+          if (trip.end_date <=> Date.today) == -1
+            @past_trips << trip
+          else
+            @current_trips << trip
+          end
+        end
+
+        if @past_trips.empty?
         else
-          @current_trips << trip
+          @past_trips.each do |trip|
+            authorize trip
+          end
         end
-      end
 
-      if @past_trips.empty?
-      else
-        @past_trips.each do |trip|
-          authorize trip
+        if @current_trips.empty?
+        else
+          @current_trips.each do |trip|
+            authorize trip
+          end
         end
+        # authorize @trips
       end
-
-      if @current_trips.empty?
-      else
-        @current_trips.each do |trip|
-          authorize trip
-        end
-      end
-      # authorize @trips
     end
-
     def edit
       @trip = Trip.find(params[:id])
       authorize @trip
