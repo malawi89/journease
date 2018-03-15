@@ -7,8 +7,8 @@
 
       <div class="banner-content">
         <h1> <%= @trip.name %> </h1>
-        <h2> from <%= @trip.start_date.strftime("%m/%d/%Y") %> </h2>
-        <h2> to <%= @trip.end_date.strftime("%m/%d/%Y") %> </h2>
+        <h2> <%= @trip.start_date.strftime("%B %e") %> - <%= @trip.end_date.strftime("%B %e") %></h2>
+
 
       </div>
     </div>
