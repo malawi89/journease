@@ -18,9 +18,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 5px;
+
+
+  .detail-countdown-holder{
+    display:flex;
+    position: relative;
+
+    .trip-card-links{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  }
+
+  }
 .countdown{
-  // margin: auto;
-  position: relative;
+  margin: auto;
+  padding-left: 35px;
+
+  // position: relative;
+
 }
 
 .details{
@@ -54,12 +73,9 @@ padding-right: 30px;
     margin-right: -15px;
   }
 
-  .add-elements{
-    padding-right: 10px;
-      .btn{
-        border-radius: 12px;
-      }
-    }
+  svg{
+    color: #A54657;
+  }
 }
 }
 // DONT GO ABOVE HERE DONT GO ABOVE HEREDONT GO ABOVE HEREDONT GO ABOVE HEREDONT GO ABOVE HEREDONT GO ABOVE HERE
