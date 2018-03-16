@@ -12,7 +12,8 @@ class TripUsersController < ApplicationController
         # authorize @trip_user
         redirect_to my_trips_path(redirect_success: "friend")
       else
-        render :new
+        skip_authorization
+        render :action => "errormessage"
       end
     else
       skip_authorization
