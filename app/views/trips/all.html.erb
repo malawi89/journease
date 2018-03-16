@@ -228,6 +228,8 @@
   </div>
 </div>
 
-
+<% if params[:redirect_success] == "friend"  %>
+  <%= javascript_pack_tag "sweet-alert-add-friend" %>
+<% end %>
 
 

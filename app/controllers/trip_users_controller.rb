@@ -9,7 +9,7 @@ class TripUsersController < ApplicationController
       authorize @trip_user
       if @trip_user.save
         # authorize @trip_user
-        redirect_to trip_path(@trip)
+        redirect_to my_trips_path(redirect_success: "friend")
       else
         render :new
       end
