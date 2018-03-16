@@ -80,10 +80,15 @@
                     <% end %>
                   </div>
                   <div class="card-info">
-                    <h5><%= milestone.name %></h5>
-                    <p>from: <%= milestone.start_time.strftime("%l:%M %p") %></p>
-                    <p>to: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
-                  </div>
+                    <h4><%= milestone.name %></h4>
+                    <% if milestone.class == Journey && milestone.sub_category != "Car rental"%>
+                      <h5>from <%= milestone.start_time.strftime("%l:%M %p") %></h5>
+                      <h6>to <%= milestone.end_time.strftime("%l:%M %p") %></h6>
+                    <% else %>
+                      <h5>at <%= milestone.start_time.strftime("%l:%M %p") %></h5>
+                    <% end %>
+<!--                       <p>to: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+-->                </div>
                 </div>
                 <div class="map">
                   <% if milestone.class == Journey %>
@@ -210,10 +215,15 @@
                     </div>
 
                     <div class="card-info">
-                      <h5><%= milestone.name %></h5>
-                      <p>from: <%= milestone.start_time.strftime("%l:%M %p") %></p>
-                      <p>to: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
-                    </div>
+                      <h4><%= milestone.name %></h4>
+                      <% if milestone.class == Journey && milestone.sub_category != "Car rental"%>
+                        <h5>from <%= milestone.start_time.strftime("%l:%M %p") %></h5>
+                        <h6>to <%= milestone.end_time.strftime("%l:%M %p") %></h6>
+                      <% else %>
+                        <h5>at <%= milestone.start_time.strftime("%l:%M %p") %></h5>
+                      <% end %>
+<!--                       <p>to: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+ -->                </div>
                   </div>
                   <div class="map">
                     <% if milestone.class == Journey %>
@@ -286,3 +296,15 @@
 
 </div>
 
+<% if params[:redirect_success] == "journey"  %>
+  <%= javascript_pack_tag "sweet-alert-journey" %>
+<% end %>
+<% if params[:redirect_success] == "activity"  %>
+  <%= javascript_pack_tag "sweet-alert-activity" %>
+<% end %>
+<% if params[:redirect_success] == "accommodation"  %>
+  <%= javascript_pack_tag "sweet-alert-accommodation" %>
+<% end %>
+<% if params[:redirect_success] == "trip"  %>
+  <%= javascript_pack_tag "sweet-alert-trip" %>
+<% end %>

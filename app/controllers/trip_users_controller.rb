@@ -8,8 +8,12 @@ class TripUsersController < ApplicationController
     if @user
       @trip_user = TripUser.new(trip: @trip, user: @user)
       authorize @trip_user
-      @trip_user.save
-    redirect_to my_trips_path
+      if @trip_user.save
+        # authorize @trip_user
+        redirect_to my_trips_path(redirect_success: "friend")
+      else
+        render :new
+      end
     else
       skip_authorization
       render :action => "invitation"

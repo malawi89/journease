@@ -12,7 +12,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(activity_params)
     @activity.trip = @trip
     if @activity.save
-      redirect_to trip_activity_path(@trip, @activity)
+      redirect_to trip_path(@trip, redirect_success: "activity")
     else
       render :new
     end
