@@ -262,3 +262,15 @@
 
 </div>
 
+<% if params[:redirect_success] == "journey"  %>
+  <%= javascript_pack_tag "sweet-alert-journey" %>
+<% end %>
+<% if params[:redirect_success] == "activity"  %>
+  <%= javascript_pack_tag "sweet-alert-activity" %>
+<% end %>
+<% if params[:redirect_success] == "accommodation"  %>
+  <%= javascript_pack_tag "sweet-alert-accommodation" %>
+<% end %>
+<% if params[:redirect_success] == "trip"  %>
+  <%= javascript_pack_tag "sweet-alert-trip" %>
+<% end %>

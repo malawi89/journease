@@ -12,7 +12,7 @@ class AccommodationsController < ApplicationController
     @accommodation = Accommodation.new(accommodation_params)
     @accommodation.trip = @trip
     if @accommodation.save
-      redirect_to trip_accommodation_path(@trip, @accommodation)
+      redirect_to trip_path(@trip, redirect_success: "accommodation")
     else
       render :new
     end
