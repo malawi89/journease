@@ -72,7 +72,7 @@
               <div class ="col-sm-12 col-md-4">
                 <div class="tripcard">
                   <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo %>');">
-                    <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline trip-card-links"%>
+                    <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline card-links"%>
                     <h4><%= trip.name %></h4>
                     <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
                     <p>Trip length: <%= (trip.end_date - trip.start_date).to_i + 1%> days</p>
