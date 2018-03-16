@@ -47,18 +47,13 @@
               <% end %>
             </li>
             <li>
-              <%= link_to "#" do %>
-                <i class="fas fa-hand-peace"></i> <%= t(".friends", default: "Friends") %>
-              <% end %>
-            </li>
-            <li>
               <%= link_to user_path(current_user) do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <i class="fa fa-sign-out-alt"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
           </ul>
