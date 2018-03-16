@@ -1,0 +1,41 @@
+.modal-header{
+
+
+  svg{
+    color: #436FA2;
+  }
+}
+
+.modal-footer{
+  display: flex;
+  justify-content: space-between;
+  svg{
+    color: #436FA2;
+  }
+
+  .fa-trash-alt{
+    color: #D23333;
+  }
+}
+
+.modal-body{
+h4{
+
+  font-size: 24px;
+}
+
+
+  p{
+    font-weight: lighter;
+    font-size: 14px;
+  }
+}
+
+
+.addfriendform{
+
+}
+
+.label{
+  color: grey;
+}

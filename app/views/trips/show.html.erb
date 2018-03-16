@@ -112,52 +112,76 @@
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                           <h4 class="modal-title"><%= milestone.name.capitalize %></h4>
+
                         </div>
                         <div class="modal-body">
-                          <h4><%=  milestone.sub_category.capitalize%></h4>
+                          <h4 class= "text-center"><%=  milestone.sub_category.capitalize%></h4>
 
-                          <p>Start-time: <%= milestone.start_time.strftime("%b %e, %l:%M %p") %></p>
-                          <p>End-time: <%= milestone.end_time.strftime("%b %e, %l:%M %p") %></p>
+                          <p> <strong>Start-time:</strong> <%= milestone.start_time.strftime("%l:%M %p ") %></p>
+                              <p> <strong>End-time:</strong> <%= milestone.end_time.strftime("%l:%M %p") %></p>
                           <% if milestone.class == Journey %>
-                            <p>Departure Location: <%= milestone.departure_location %></p>
-                            <p>Arrival Location: <%= milestone.arrival_location %></p>
+                            <p><strong>Departure Location:</strong></p>
+                            <p><%= milestone.departure_location %></p>
+                            <p><strong>Arrival Location:</strong></p>
+                            <p><%= milestone.arrival_location %></p>
                           <% else %>
-                            <p>Location: <%=milestone.location %> <%= link_to "(Get Directions)", "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' %></p>
+                            <p><strong>Location:</strong> <%=milestone.location %></p>
                           <% end %>
-                          <p>Comments: <%= milestone.comments %></p>
+                          <% unless milestone.comments.empty? %>
+                          <p><strong>Comments:</strong></p>
+                          <p> <%= milestone.comments %></p>
+                          <% end %>
                         </div>
                         <div class="modal-footer">
+                          <% if milestone.class == Journey %>
+                            <%= link_to  trip_journey_path(milestone.trip, milestone) , method: :delete do%>
+                              <i class="fas fa-trash-alt fa-3x"></i>
+                            <% end %>
+                          <% elsif milestone.class == Activity %>
+                            <%= link_to  trip_activity_path(milestone.trip, milestone), method: :delete do%>
+                              <i class="fas fa-trash-alt fa-3x"></i>
+                            <% end %>
+                            <% else %>
+                            <%= link_to  trip_accommodation_path(milestone.trip, milestone), method: :delete do%>
+                              <i class="fas fa-trash-alt fa-3x"></i>
+                            <% end %>
+                          <% end %>
                           <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
 
                           <% if milestone.class == Journey %>
-                            <%= link_to  trip_journey_path(milestone.trip, milestone) , method: :delete do%>
-                              <i class="fas fa-trash-alt fa-2x"></i>
-                            <% end %>
+
                             <%= link_to  edit_trip_journey_path(milestone.trip, milestone)do%>
-                              <i class="fas fa-edit fa-2x"></i>
+                              <i class="fas fa-edit fa-3x"></i>
                             <% end %>
-                            <%= link_to 'Get Directions', milestone.departure_location, class: "btn btn-primary", target: '_blank'%>
+                            <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.departure_location}", target: '_blank' do%>
+                              <i class="fas fa-compass fa-3x"></i>
+                            <% end %>
                           <% elsif milestone.class == Activity %>
-                            <%= link_to  trip_activity_path(milestone.trip, milestone) do%>
-                              <i class="fas fa-trash-alt fa-2x"></i>
-                            <% end %>
+
                             <%= link_to  edit_trip_activity_path(milestone.trip, milestone)do%>
-                              <i class="fas fa-edit fa-2x"></i>
+                              <i class="fas fa-edit fa-3x"></i>
                             <% end %>
-                            <%= link_to 'Get Directions', milestone.location, class: "btn btn-primary", target: '_blank' %>
-                            <%= link_to 'Download Photos', milestone.photo.url, class: "btn btn-primary" %>
+                            <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' do %>
+                            <i class="fas fa-compass fa-3x"></i>
+                            <% end %>
+
+
+                              <%= link_to milestone.photo.url do %>
+                                <i class="fas fa-images fa-3x"></i>
+                              <% end %>
+
                           <% else %>
-                            <%= link_to  trip_accommodation_path(milestone.trip, milestone) do%>
-                            <i class="fas fa-trash-alt fa-2x"></i>
-                            <% end %>
+
                             <%= link_to  edit_trip_accommodation_path(milestone.trip, milestone)do%>
-                              <i class="fas fa-edit fa-2x"></i>
+                              <i class="fas fa-edit fa-3x"></i>
                             <% end %>
-                            <%= link_to 'Get Directions', milestone.location, class: "btn btn-primary", target: '_blank' %>
+                            <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{milestone.location}", target: '_blank' do %>
+                              <i class="fas fa-compass fa-3x"></i>
+                              <% end %>
                           <% end %>
-
-                          <%= link_to 'Download Document', milestone.booking_documents.url, class: "btn btn-primary" %>
-
+                            <%= link_to milestone.booking_documents.url do %>
+                              <i class="fas fa-file-alt fa-3x"></i>
+                          <% end %>
                         </div>
                       </div>
                     </div>

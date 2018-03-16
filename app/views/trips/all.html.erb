@@ -37,8 +37,8 @@
             <% trip.trip_users.each do |user| %>
               <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
             <% end %>
-          <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#addfriend<%trip.id%>"></i>
-          <div id="addfriend<%trip.id%>" class="modal fade" role="dialog">
+          <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#addfriend<%=trip.id%>"></i>
+          <div id="addfriend<%=trip.id%>" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
               <!-- Modal content-->
               <div class="modal-content">
@@ -47,9 +47,9 @@
                   <h4 class="modal-title">Add a friend to this trip</h4>
                 </div>
                 <div class="modal-body">
-                  <%= simple_form_for :add_friend, url: trip_user_add_path(trip) do |f| %>
-                    <%= f.input :email  %>
-                    <%= f.submit %>
+                  <%= simple_form_for :add_friend, url: trip_user_add_path(trip), html: {class: "addfriendform"} do |f| %>
+                    <%= f.input :email, placeholder: "dave@morley.com", label_html: { class: "label"}  %>
+                    <%= f.submit "Add Friend",  class: "btn btn-primary" %>
                   <% end %>
                 </div>
                 <div class="modal-footer">
@@ -89,8 +89,8 @@
                     <% trip.trip_users.each do |user| %>
                       <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
                     <% end %>
-                    <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#mobileaddfriend<%trip.id%>"></i>
-                <div id="mobileaddfriend<%trip.id%>" class="modal fade" role="dialog">
+                    <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#mobileaddfriend<%=trip.id%>"></i>
+                <div id="mobileaddfriend<%=trip.id%>" class="modal fade" role="dialog">
                   <div class="modal-dialog modal-sm">
 
                     <!-- Modal content-->
@@ -100,11 +100,10 @@
                         <h4 class="modal-title">Add a friend to this trip</h4>
                       </div>
                       <div class="modal-body">
-                        <%= simple_form_for :add_friend, url: trip_user_add_path(trip) do |f| %>
-                          <%= f.input :email  %>
-                          <%= f.submit %>
+                        <%= simple_form_for :add_friend, url: trip_user_add_path(trip), html: {class: "addfriendform"} do |f| %>
+                          <%= f.input :email, placeholder: "dave@morley.com", label_html: { class: "label"}  %>
+                          <%= f.submit "Add Friend",  class: "btn btn-primary" %>
                         <% end %>
-
                       </div>
                       <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
@@ -143,8 +142,8 @@
               <% trip.trip_users.each do |user| %>
                 <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
               <% end %>
-              <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#addfriend<%trip.id%>"></i>
-              <div id="addfriend<%trip.id%>" class="modal fade" role="dialog">
+              <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#addfriend<%=trip.id%>"></i>
+              <div id="addfriend<%=trip.id%>" class="modal fade" role="dialog">
                 <div class="modal-dialog modal-lg">
                   <!-- Modal content-->
                   <div class="modal-content">
@@ -153,9 +152,9 @@
                       <h4 class="modal-title">Add a friend to this trip</h4>
                     </div>
                     <div class="modal-body">
-                      <%= simple_form_for :add_friend, url: trip_user_add_path(trip) do |f| %>
-                        <%= f.input :email  %>
-                        <%= f.submit %>
+                      <%= simple_form_for :add_friend, url: trip_user_add_path(trip), html: {class: "addfriendform"} do |f| %>
+                        <%= f.input :email, placeholder: "dave@morley.com", label_html: { class: "label"}  %>
+                        <%= f.submit "Add Friend",  class: "btn btn-primary" %>
                       <% end %>
                     </div>
                     <div class="modal-footer">
@@ -191,8 +190,8 @@
                   <% trip.trip_users.each do |user| %>
                     <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
                   <% end %>
-                  <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#mobileaddfriend<%trip.id%>"></i>
-                  <div id="mobileaddfriend<%trip.id%>" class="modal fade" role="dialog">
+                  <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#mobileaddfriend<%=trip.id%>"></i>
+                  <div id="mobileaddfriend<%=trip.id%>" class="modal fade" role="dialog">
                     <div class="modal-dialog modal-sm">
 
                       <!-- Modal content-->
@@ -202,11 +201,10 @@
                           <h4 class="modal-title">Add a friend to this trip</h4>
                         </div>
                         <div class="modal-body">
-                          <%= simple_form_for :add_friend, url: trip_user_add_path(trip) do |f| %>
-                            <%= f.input :email  %>
-                            <%= f.submit %>
+                          <%= simple_form_for :add_friend, url: trip_user_add_path(trip), html: {class: "addfriendform"} do |f| %>
+                            <%= f.input :email, placeholder: "dave@morley.com", label_html: { class: "label"}  %>
+                            <%= f.submit "Add Friend",  class: "btn btn-primary" %>
                           <% end %>
-
                         </div>
                         <div class="modal-footer">
                           <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->

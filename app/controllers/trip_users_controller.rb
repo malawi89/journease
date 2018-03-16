@@ -3,6 +3,7 @@ class TripUsersController < ApplicationController
   before_action :set_trip
 
   def add_friend
+
     @user = User.find_by(email: params[:add_friend][:email])
     if @user
       @trip_user = TripUser.new(trip: @trip, user: @user)
