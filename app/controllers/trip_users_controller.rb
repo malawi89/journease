@@ -3,16 +3,13 @@ class TripUsersController < ApplicationController
   before_action :set_trip
 
   def add_friend
+
     @user = User.find_by(email: params[:add_friend][:email])
     if @user
       @trip_user = TripUser.new(trip: @trip, user: @user)
       authorize @trip_user
-      if @trip_user.save
-        # authorize @trip_user
-        redirect_to trip_path(@trip)
-      else
-        render :new
-      end
+      @trip_user.save
+    redirect_to my_trips_path
     else
       skip_authorization
       render :action => "invitation"
