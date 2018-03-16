@@ -1,23 +1,24 @@
-<%= simple_form_for [@trip, @journey] do |f| %>
-  <%= f.error_notification %>
+<div class="container">
+  <%= simple_form_for [@trip, @journey] do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :sub_category, prompt: "Select a transportation mean",collection: ['Plane', 'Train', 'Car rental', 'Ferry', 'Bus', 'Other (bicycle, unicorn, etc.)'] %>
-  </div>
+    <div class="form-inputs">
+      <%= f.input :sub_category, prompt: "Select a transportation mean",collection: ['Plane', 'Train', 'Car rental', 'Ferry', 'Bus', 'Other (bicycle, unicorn, etc.)'] %>
+    </div>
 
-  <div class="form-inputs">
-    <%= f.input :name, placeholder: 'Plane to NYC, Seats 12B, Train to London, etc.' %>
-    <%= f.input :departure_location, input_html: {class: "autocompleter"} %>
-    <%= f.input :start_time, as: :string, input_html: {class: "flatpicker"} %>
-    <%= f.input :end_time, as: :string, input_html: {class: "flatpicker"} %>
-    <%= f.input :arrival_location, input_html: {class: "autocompleter"} %>
-    <%= f.input :comments %>
-    <%= f.input :booking_documents, label: "Booking document" %>
-    <%= f.input :booking_documents_cache, as: :hidden %>
-  </div>
+    <div class="form-inputs">
+      <%= f.input :name, placeholder: 'Plane to NYC, Seats 12B, Train to London, etc.' %>
+      <%= f.input :departure_location, input_html: {class: "autocompleter"} %>
+      <%= f.input :start_time, as: :string, input_html: {class: "flatpicker"} %>
+      <%= f.input :end_time, as: :string, input_html: {class: "flatpicker"} %>
+      <%= f.input :arrival_location, input_html: {class: "autocompleter"} %>
+      <%= f.input :comments %>
+      <%= f.input :booking_documents, label: "Booking document" %>
+      <%= f.input :booking_documents_cache, as: :hidden %>
+    </div>
 
-  <div class="form-actions text-center">
-    <%= f.button :submit, class:"btn btn-success" %>
-  </div>
-<% end %>
-
+    <div class="form-actions text-center">
+      <%= f.button :submit, class:"btn btn-success" %>
+    </div>
+  <% end %>
+</div>

@@ -1,22 +1,25 @@
-<%= simple_form_for [@trip, @activity] do |f| %>
-  <%= f.error_notification %>
+<div class="minheight">
+  <div class="container">
+    <%= simple_form_for [@trip, @activity] do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :sub_category, prompt: "Select activity", collection: ['Sight seeing', 'Event', 'Physical activity', 'Dining', 'Other (counting clouds, beer contest, etc.)'] %>
+      <div class="form-inputs">
+        <%= f.input :sub_category, prompt: "Select activity", collection: ['Sight seeing', 'Event', 'Physical activity', 'Dining', 'Other (counting clouds, beer contest, etc.)'] %>
+      </div>
+
+      <div class="form-inputs">
+        <%= f.input :name, placeholder: "Visiting Athens, Hiking in the Costwolds, etc." %>
+        <%= f.input :location , input_html: {class: "autocompleter"}%>
+        <%= f.input :start_time, as: :string, input_html: {class: "flatpicker"} %>
+        <%= f.input :end_time, as: :string, input_html: {class: "flatpicker"} %>
+        <%= f.input :comments %>
+        <%= f.input :booking_documents, label: "Booking document" %>
+        <%= f.input :booking_documents_cache, as: :hidden %>
+      </div>
+
+      <div class="form-actions text-center">
+        <%= f.button :submit, class:"btn btn-success" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="form-inputs">
-    <%= f.input :name, placeholder: "Visiting Athens, Hiking in the Costwolds, etc." %>
-    <%= f.input :location , input_html: {class: "autocompleter"}%>
-    <%= f.input :start_time, as: :string, input_html: {class: "flatpicker"} %>
-    <%= f.input :end_time, as: :string, input_html: {class: "flatpicker"} %>
-    <%= f.input :comments %>
-    <%= f.input :booking_documents, label: "Booking document" %>
-    <%= f.input :booking_documents_cache, as: :hidden %>
-  </div>
-
-  <div class="form-actions text-center">
-    <%= f.button :submit, class:"btn btn-success" %>
-  </div>
-<% end %>
-
+</div>
