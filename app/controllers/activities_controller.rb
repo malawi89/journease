@@ -29,7 +29,7 @@ class ActivitiesController < ApplicationController
 
   def update
     if @activity.update(activity_params)
-      redirect_to trip_activity_path(@trip, @activity)
+      redirect_to trip_path(@trip)
     else
       render :edit
     end

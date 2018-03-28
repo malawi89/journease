@@ -1,4 +1,4 @@
-class TripsController < ApplicationController
+  class TripsController < ApplicationController
   before_action :set_trip, only: [:show,:update, :destroy, :invitation]
   before_action :skip_authorization, only: [:all]
   # after_create :associate_user

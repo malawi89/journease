@@ -29,7 +29,7 @@ class JourneysController < ApplicationController
 
   def update
     if @journey.update(journey_params)
-      redirect_to trip_journey_path(@trip, @journey)
+      redirect_to trip_path(@trip)
     else
       render :edit
     end
