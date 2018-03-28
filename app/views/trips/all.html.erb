@@ -24,28 +24,28 @@
         </div>
       <% else %>
         <h3>Upcoming trips</h3>
-          <% @current_trips.each do |trip| %>
-          <div class="tripcard-desktop">
-            <div class="detail-countdown-holder">
-                <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline trip-card-links"%>
-              <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo %>');">
-                <h4><%= trip.name %></h4>
-                <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
-                <p>Trip length: <%= (trip.end_date - trip.start_date).to_i + 1 %> days</p>
-              </div>
-              <div class="countdown">
-                <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline trip-card-links"%>
-                <% if ( Date.today <=> trip.start_date) == -1 %>
-                  <p style= "color: #0D3B66"><%= (trip.start_date - Date.today).to_i %> days to go!</p>
-                <% else %>
-                  <p style = "color: green">Active Trip</p>
-                <% end %>
-              </div>
+        <% @current_trips.each do |trip| %>
+        <div class="tripcard-desktop">
+          <div class="detail-countdown-holder">
+            <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline trip-card-links"%>
+            <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo %>');">
+              <h4><%= trip.name %></h4>
+              <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
+              <p>Trip length: <%= (trip.end_date - trip.start_date).to_i + 1 %> days</p>
             </div>
-            <div class="travellers">
-              <% trip.trip_users.each do |user| %>
-                <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
+            <div class="countdown">
+              <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline trip-card-links"%>
+              <% if ( Date.today <=> trip.start_date) == -1 %>
+                <p style= "color: #0D3B66"><%= (trip.start_date - Date.today).to_i %> days to go!</p>
+              <% else %>
+                <p style = "color: green">Active Trip</p>
               <% end %>
+            </div>
+          </div>
+          <div class="travellers">
+            <% trip.trip_users.each do |user| %>
+              <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
+            <% end %>
             <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#addfriend<%=trip.id%>"></i>
             <div id="addfriend<%=trip.id%>" class="modal fade" role="dialog">
               <div class="modal-dialog modal-sm">
@@ -69,36 +69,146 @@
             </div>
           </div>
         </div>
+        <% end %>
       <% end %>
     </div>
   </div>
 
-    <div class="container">
-      <div class="upcoming-trips-mobile">
+  <div class="container">
+    <div class="upcoming-trips-mobile">
+      <% if @current_trips == [] %>
+        <div class="no-trip-alert text-center">
+          <div class="row">
+            <div class="col-sm-12">
+              <p>You don't have any upcoming trips :(</p>
+              <p>To add one, click the button above</p>
+            </div>
+          </div>
+        </div>
+      <% else %>
         <h3>Upcoming Trips</h3>
         <% @current_trips.each do |trip|%>
           <div class="row">
-              <div class ="col-sm-12 col-md-4">
-                <div class="tripcard">
-                  <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo %>');">
-                    <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline card-links"%>
-                    <h4><%= trip.name %></h4>
-                    <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
-                    <p>Trip length: <%= (trip.end_date - trip.start_date).to_i + 1%> days</p>
-                    <div class="countdown">
-                      <% if ( Date.today <=> trip.start_date) == -1 %>
-                          <p><%= (trip.start_date - Date.today).to_i %> days to go!</p>
-                        <% else %>
-                          <p>Active Trip</p>
-                        <% end %>
+            <div class ="col-sm-12 col-md-4">
+              <div class="tripcard">
+                <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo %>');">
+                  <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline card-links"%>
+                  <h4><%= trip.name %></h4>
+                  <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
+                  <p>Trip length: <%= (trip.end_date - trip.start_date).to_i + 1%> days</p>
+                  <div class="countdown">
+                    <% if ( Date.today <=> trip.start_date) == -1 %>
+                      <p><%= (trip.start_date - Date.today).to_i %> days to go!</p>
+                    <% else %>
+                      <p>Active Trip</p>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="travellers">
+                  <% trip.trip_users.each do |user| %>
+                    <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
+                  <% end %>
+                  <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#mobileaddfriend<%=trip.id%>"></i>
+                  <div id="mobileaddfriend<%=trip.id%>" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Add a friend to this trip</h4>
+                        </div>
+                        <div class="modal-body">
+                          <%= simple_form_for :add_friend, url: trip_user_add_path(trip), html: {class: "addfriendform"} do |f| %>
+                            <%= f.input :email, placeholder: "dave@morley.com", label_html: { class: "label"}  %>
+                            <%= f.submit "Add Friend",  class: "btn btn-primary" %>
+                          <% end %>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
 
-                  <div class="travellers">
-                    <% trip.trip_users.each do |user| %>
-                      <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
-                    <% end %>
-                    <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#mobileaddfriend<%=trip.id%>"></i>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="past-trips">
+      <% if @past_trips == [] %>
+      <% else %>
+        <h3>Past Trips</h3>
+        <% @past_trips.each do |trip|%>
+          <div class="tripcard-desktop">
+            <div class="detail-countdown-holder">
+              <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo, crop: :fill %>');">
+                <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline trip-card-links"%>
+                <h4><%= trip.name %></h4>
+                <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
+                <p>Trip length: <%= (trip.end_date - trip.start_date).to_i + 1%> days</p>
+              </div>
+              <div class="countdown">
+                 <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline trip-card-links"%>
+                <i class="far fa-check-circle fa-3x" style= "color: #A54657"></i>
+              </div>
+            </div>
+            <div class="travellers">
+              <% trip.trip_users.each do |user| %>
+                <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
+              <% end %>
+              <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#addfriend<%=trip.id%>"></i>
+              <div id="addfriend<%=trip.id%>" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Add a friend to this trip</h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= simple_form_for :add_friend, url: trip_user_add_path(trip), html: {class: "addfriendform"} do |f| %>
+                        <%= f.input :email, placeholder: "dave@morley.com", label_html: { class: "label"}  %>
+                        <%= f.submit "Add Friend",  class: "btn btn-primary" %>
+                      <% end %>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="past-trips-mobile">
+      <h3>Past Trips</h3>
+      <%  @past_trips.each do |trip|%>
+        <div class="row">
+          <div class ="col-sm-12 col-md-4">
+            <div class="tripcard">
+              <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo, crop: :fill %>');">
+                <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline card-links"%>
+                <h4><%= trip.name %></h4>
+                <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
+                <p>Trip length: <%= (trip.end_date - trip.start_date).to_i + 1 %> days</p>
+                <div class="countdown">
+                 <i class="far fa-check-circle fa-3x" style= "color: #A54657, border: 1px solid white"></i>
+                </div>
+              </div>
+
+              <div class="travellers">
+                <% trip.trip_users.each do |user| %>
+                  <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
+                <% end %>
+                <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#mobileaddfriend<%=trip.id%>"></i>
                 <div id="mobileaddfriend<%=trip.id%>" class="modal fade" role="dialog">
                   <div class="modal-dialog modal-sm">
 
@@ -116,110 +226,7 @@
                       </div>
                       <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
 
-    <div class="container">
-      <div class="past-trips">
-        <% if @past_trips == [] %>
-        <% else %>
-          <h3>Past Trips</h3>
-          <% @past_trips.each do |trip|%>
-            <div class="tripcard-desktop">
-              <div class="detail-countdown-holder">
-                <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo, crop: :fill %>');">
-                  <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline trip-card-links"%>
-                  <h4><%= trip.name %></h4>
-                  <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
-                  <p>Trip length: <%= (trip.end_date - trip.start_date).to_i + 1%> days</p>
-                </div>
-                <div class="countdown">
-                   <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline trip-card-links"%>
-                  <i class="far fa-check-circle fa-3x" style= "color: #A54657"></i>
-                </div>
-              </div>
-              <div class="travellers">
-                <% trip.trip_users.each do |user| %>
-                  <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
-                <% end %>
-                <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#addfriend<%=trip.id%>"></i>
-                <div id="addfriend<%=trip.id%>" class="modal fade" role="dialog">
-                  <div class="modal-dialog modal-sm">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Add a friend to this trip</h4>
-                      </div>
-                      <div class="modal-body">
-                        <%= simple_form_for :add_friend, url: trip_user_add_path(trip), html: {class: "addfriendform"} do |f| %>
-                          <%= f.input :email, placeholder: "dave@morley.com", label_html: { class: "label"}  %>
-                          <%= f.submit "Add Friend",  class: "btn btn-primary" %>
-                        <% end %>
-                      </div>
-                      <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="past-trips-mobile">
-        <h3>Past Trips</h3>
-        <%  @past_trips.each do |trip|%>
-          <div class="row">
-            <div class ="col-sm-12 col-md-4">
-              <div class="tripcard">
-                <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo, crop: :fill %>');">
-                  <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline card-links"%>
-                  <h4><%= trip.name %></h4>
-                  <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
-                  <p>Trip length: <%= (trip.end_date - trip.start_date).to_i + 1 %> days</p>
-                  <div class="countdown">
-                   <i class="far fa-check-circle fa-3x" style= "color: #A54657, border: 1px solid white"></i>
-                  </div>
-                </div>
-
-                <div class="travellers">
-                  <% trip.trip_users.each do |user| %>
-                    <%= cl_image_tag user.user.photo, class: "avatar-bordered" %>
-                  <% end %>
-                  <i class="fas fa-plus-circle fa-3x btn" data-toggle="modal" data-target="#mobileaddfriend<%=trip.id%>"></i>
-                  <div id="mobileaddfriend<%=trip.id%>" class="modal fade" role="dialog">
-                    <div class="modal-dialog modal-sm">
-
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Add a friend to this trip</h4>
-                        </div>
-                        <div class="modal-body">
-                          <%= simple_form_for :add_friend, url: trip_user_add_path(trip), html: {class: "addfriendform"} do |f| %>
-                            <%= f.input :email, placeholder: "dave@morley.com", label_html: { class: "label"}  %>
-                            <%= f.submit "Add Friend",  class: "btn btn-primary" %>
-                          <% end %>
-                        </div>
-                        <div class="modal-footer">
-                          <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
-
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -227,14 +234,15 @@
               </div>
             </div>
           </div>
-        <% end %>
         </div>
-        </div>
-    <% end %>
-        </div>
+      <% end %>
+      </div>
+      </div>
+  <% end %>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <% if params[:redirect_success] == "friend"  %>
