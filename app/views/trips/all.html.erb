@@ -146,7 +146,7 @@
         <% @past_trips.each do |trip|%>
           <div class="tripcard-desktop">
             <div class="detail-countdown-holder">
-              <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo, crop: :fill %>');">
+              <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo, crop: :fill, effect: :grayscale %>');">
                 <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline trip-card-links"%>
                 <h4><%= trip.name %></h4>
                 <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
@@ -194,7 +194,7 @@
         <div class="row">
           <div class ="col-sm-12 col-md-4">
             <div class="tripcard">
-              <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo, crop: :fill %>');">
+              <div class="details" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path trip.photo, crop: :fill, effect: :grayscale; %>');">
                 <%= link_to " ", trip_path(trip), class: "btn btn-primary-outline card-links"%>
                 <h4><%= trip.name %></h4>
                 <p><%= trip.start_date.strftime("%B %e") %> - <%= trip.end_date.strftime("%B %e") %></p>
