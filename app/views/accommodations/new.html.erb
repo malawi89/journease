@@ -1,10 +1,9 @@
 <% content_for :meta_title, "Add an accommodation" %>
-<div class="minheight">
-  <div class="container">
-    <div class="row">
-        <div class="form-stuff">
-          <h3 class = "text-center">Add an accommodation to your trip</h3>
-
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+      <div class="form-stuff">
+        <h3 class = "text-center">Add an accommodation to your trip</h3>
           <% if @accommodation.errors.any? %>
             <ul>
               <% @accommodation.errors.full_messages.each do |message| %>
@@ -17,4 +16,6 @@
       </div>
     </div>
   </div>
+  <p class="flatpickr-start-date" style= "visibility: hidden"><%= @trip.start_date %></p>
+  <p class="flatpickr-end-date" style= "visibility: hidden"><%= @trip.end_date %></p>
 </div>
